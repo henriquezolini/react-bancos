@@ -24,6 +24,7 @@ import { Cresol } from "./icons/Cresol";
 import { Daycoval } from "./icons/Daycoval";
 import { DeutscheBank } from "./icons/DeutscheBank";
 import { Digio } from "./icons/Digio";
+import { EfiBank } from "./icons/EfiBank";
 import { Fibra } from "./icons/Fibra";
 import { BancoHonda } from "./icons/BancoHonda";
 import { Inbursa } from "./icons/Inbursa";
@@ -46,12 +47,14 @@ import { Paulista } from "./icons/Paulista";
 import { PicPay } from "./icons/PicPay";
 import { Pine } from "./icons/Pine";
 import { Rendimento } from "./icons/Rendimento";
+import { Revolut } from "./icons/Revolut";
 import { Safra } from "./icons/Safra";
 import { Santander } from "./icons/Santander";
 import { Sicoob } from "./icons/Sicoob";
 import { Sicredi } from "./icons/Sicredi";
 import { SocieteGenerale } from "./icons/SocieteGenerale";
 import { Sofisa } from "./icons/Sofisa";
+import { StarkBank } from "./icons/StarkBank";
 import { BancoStellantis } from "./icons/BancoStellantis";
 import { Stone } from "./icons/Stone";
 import { SumitomoMitsui } from "./icons/SumitomoMitsui";
@@ -61,6 +64,7 @@ import { Unicred } from "./icons/Unicred";
 import { BancoVolkswagen } from "./icons/BancoVolkswagen";
 import { WillBank } from "./icons/WillBank";
 import { XP } from "./icons/XP";
+import { ZroBank } from "./icons/ZroBank";
 
 export interface Bank {
   /** Identificador do arquivo/ícone (ex.: "nubank") */
@@ -101,6 +105,7 @@ export const banks: Bank[] = [
   { slug: "daycoval", name: "Banco Daycoval", compe: "707", color: "#001c55", Icon: Daycoval },
   { slug: "deutsche", name: "Deutsche Bank Brasil", compe: "487", color: "#0018a8", Icon: DeutscheBank },
   { slug: "digio", name: "Digio", compe: "335", color: "#23292e", Icon: Digio },
+  { slug: "efibank", name: "Efí Bank", compe: "364", color: "#f37124", Icon: EfiBank },
   { slug: "fibra", name: "Banco Fibra", compe: "224", color: "#082a4d", Icon: Fibra },
   { slug: "honda", name: "Banco Honda", compe: null, color: "#da251d", Icon: BancoHonda },
   { slug: "inbursa", name: "Banco Inbursa", compe: "012", color: "#012148", Icon: Inbursa },
@@ -123,12 +128,14 @@ export const banks: Bank[] = [
   { slug: "picpay", name: "PicPay", compe: "380", color: "#11c76f", Icon: PicPay },
   { slug: "pine", name: "Banco Pine", compe: "643", color: "#661739", Icon: Pine },
   { slug: "rendimento", name: "Banco Rendimento", compe: "633", color: "#0a1d6f", Icon: Rendimento },
+  { slug: "revolut", name: "Revolut", compe: null, color: "#000000", Icon: Revolut },
   { slug: "safra", name: "Banco Safra", compe: "422", color: "#00003c", Icon: Safra },
   { slug: "santander", name: "Santander", compe: "033", color: "#fe0000", Icon: Santander },
   { slug: "sicoob", name: "Sicoob", compe: "756", color: "#003641", Icon: Sicoob },
   { slug: "sicredi", name: "Sicredi", compe: "748", color: "#3fa110", Icon: Sicredi },
   { slug: "socgen", name: "Banco Société Générale Brasil", compe: "366", color: "#ffffff", Icon: SocieteGenerale },
   { slug: "sofisa", name: "Banco Sofisa", compe: "637", color: "#17b497", Icon: Sofisa },
+  { slug: "starkbank", name: "Stark Bank", compe: null, color: "#1d2732", Icon: StarkBank },
   { slug: "stellantis", name: "Banco Stellantis", compe: null, color: "#243882", Icon: BancoStellantis },
   { slug: "stone", name: "Stone", compe: "197", color: "#0db14b", Icon: Stone },
   { slug: "sumitomo", name: "Banco Sumitomo Mitsui Brasileiro", compe: "464", color: "#ffffff", Icon: SumitomoMitsui },
@@ -138,6 +145,7 @@ export const banks: Bank[] = [
   { slug: "volkswagen", name: "Banco Volkswagen", compe: "393", color: "#001e50", Icon: BancoVolkswagen },
   { slug: "willbank", name: "Will Bank", compe: null, color: "#ffd900", Icon: WillBank },
   { slug: "xp", name: "XP", compe: "348", color: "#000000", Icon: XP },
+  { slug: "zrobank", name: "Zro Bank", compe: null, color: "#252f59", Icon: ZroBank },
 ];
 
 /** Busca um banco pelo slug ("nubank") ou código COMPE ("260" ou 260). */

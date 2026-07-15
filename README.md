@@ -158,6 +158,10 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Banco Toyota | 387 | ✅ | `<BancoToyota />` |
 | Unicred | 136 | ✅ | `<Unicred />` |
 | Banco Volkswagen | 393 | ✅ | `<BancoVolkswagen />` |
+| Efí Bank | 364 | ✅ | `<EfiBank />` |
+| Stark Bank | — | ✅ | `<StarkBank />` |
+| Zro Bank | — | ✅ | `<ZroBank />` |
+| Revolut | — | ✅ | `<Revolut />` |
 | Banco Master | 243 | 🔜 | — |
 | Banco Modal | 746 | 🔜 | — |
 | Banco Alfa | 025 | 🔜 | — |

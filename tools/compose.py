@@ -302,3 +302,19 @@ write_icon("deutsche", "#0018a8", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, 
 print("honda"); p = get_flat_paths("honda_src.svg")
 wing = [q for q in p if _bb(q)[3] < 1350]
 write_icon("honda", "#da251d", [group(wing, ["#ffffff"] * len(wing), C, C, fit=FIT_SIMBOLO)])
+
+# Efí Bank (ex-Gerencianet): lockup "efí bank" branco sobre o laranja oficial
+print("efibank"); p = get_flat_paths("efibank_src.svg")
+write_icon("efibank", "#f37124", [group(p, ["#ffffff", "#ffffff"], C, C, w=LARG_LOGO)])
+
+# Stark Bank: símbolo (raio em azuis) nas cores originais sobre o grafite da marca
+print("starkbank"); p = get_flat_paths("starkbank_src.svg")
+write_icon("starkbank", "#1d2732", [group(p[0:4], None, C, C, fit=FIT_SIMBOLO)])
+
+# Zro Bank: lockup "zro bank" branco (ponto ciano mantido) sobre o azul da marca
+print("zrobank"); p = get_flat_paths("zrobank_src.svg")
+write_icon("zrobank", "#252f59", [group(p, ["#54b7e8", "#ffffff", "#ffffff", "#ffffff"], C, C, w=LARG_LOGO)])
+
+# Revolut: monograma "R" (simple-icons) branco sobre o preto da marca
+print("revolut"); p = get_flat_paths("revolut_src.svg")
+write_icon("revolut", "#000000", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
