@@ -16,6 +16,12 @@
   ],
   "license": "MIT",
   "author": "Henrique Zolini <henriquezolini@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriquezolini/react-bancos.git"
+  },
+  "homepage": "https://henriquezolini.github.io/react-bancos/",
+  "bugs": "https://github.com/henriquezolini/react-bancos/issues",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

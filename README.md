@@ -134,7 +134,7 @@ Sentiu falta de um banco? [Abra uma issue](../../issues) ou envie um PR — o pr
 
 ## Exemplos ao vivo
 
-Abra **[`docs/index.html`](docs/index.html)** no navegador (ou publique via GitHub Pages apontando para `/docs`): um playground com busca por nome/código, controles de tamanho e raio, e cópia do import com um clique.
+**[henriquezolini.github.io/react-bancos](https://henriquezolini.github.io/react-bancos/)** — playground com busca por nome/código, controles de tamanho e raio, e cópia do import com um clique. (Fonte em [`docs/index.html`](docs/index.html).)
 
 Para regenerar a página: `npm run docs`.
 
