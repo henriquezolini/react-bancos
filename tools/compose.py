@@ -109,9 +109,12 @@ write_icon("sicredi", "#3fa110", [group(p[0:2], ["#ffffff", "#ffffff"], C, C, fi
 print("sicoob"); p = get_paths("sicoob_src.svg")
 write_icon("sicoob", "#003641", [group(p[1:4], None, C, C, fit=FIT_SIMBOLO)])
 
-# XP: a marca é o próprio "XP" com a flâmula (sem símbolo separado); remove o "inc."
+# XP Investimentos: "XP" branco sobre preto. As letterforms vêm do vetor xp_src
+# (path 2 = X e P completos); a flâmula azul e o "inc." — que são da holding
+# XP Inc., não do banco — ficam de fora. O tile xpinvestimentos_src não serve
+# de fonte porque as letras vazadas sangram recortadas pela borda.
 print("xp"); p = get_paths("xp_src.svg")
-write_icon("xp", "#000000", [group([p[1], p[2]], ["#0084d5", "#ffffff"], C, C, w=LARG_LOGO)])
+write_icon("xp", "#000000", [group([p[2]], ["#ffffff"], C, C, w=LARG_LOGO)])
 
 # PagBank: símbolo PagSeguro/PagBank (simple-icons) branco sobre verde PagBank
 # (flags de arco compactadas tipo "0 004.835" são expandidas p/ compatibilidade)
