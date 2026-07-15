@@ -318,3 +318,80 @@ write_icon("zrobank", "#252f59", [group(p, ["#54b7e8", "#ffffff", "#ffffff", "#f
 # Revolut: monograma "R" (simple-icons) branco sobre o preto da marca
 print("revolut"); p = get_flat_paths("revolut_src.svg")
 write_icon("revolut", "#000000", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# ---------------------------------------------------------------------------
+# Lote 3 (2026-07-15): carteiras/fintechs muito usadas (escopo ampliado pelo dono)
+# ---------------------------------------------------------------------------
+
+# PayPal: monograma PP (simple-icons) branco sobre o azul oficial
+print("paypal"); p = get_flat_paths("paypal_src.svg")
+write_icon("paypal", "#003087", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Wise: bandeira (simple-icons) no verde-escuro sobre o verde-claro — par oficial da marca
+print("wise"); p = get_flat_paths("wise_src.svg")
+write_icon("wise", "#9fe870", [group(p, ["#163300"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Warren: wordmark branco sobre o coral oficial
+print("warren"); p = get_flat_paths("warren_src.svg")
+write_icon("warren", "#e24324", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Asaas: wordmark branco sobre o azul oficial
+print("asaas"); p = get_flat_paths("asaas_src.svg")
+write_icon("asaas", "#0038e5", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# QI Tech: marca ciano oficial sobre o grafite do site da marca
+print("qitech"); p = get_flat_paths("qitech_src.svg")
+write_icon("qitech", "#101828", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Celcoin: wordmark branco sobre o roxo oficial
+print("celcoin"); p = get_flat_paths("celcoin_src.svg")
+write_icon("celcoin", "#7664fa", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Bankly: wordmark branco sobre o azul oficial (do ponto do "i" no próprio arquivo)
+print("bankly"); p = get_flat_paths("bankly_src.svg")
+write_icon("bankly", "#347bff", [group(p, ["#ffffff", "#ffffff"], C, C, w=LARG_LOGO)])
+
+# iugu: marca branca sobre grafite (o vetor oficial é monocromático)
+print("iugu"); p = get_flat_paths("iugu_src.svg")
+write_icon("iugu", "#1b1b1b", [group(p, ["#ffffff"] * len(p), C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# InfinitePay: wordmark branco sobre o grafite da marca (tile do lockup descartado)
+print("infinitepay"); p = get_flat_paths("infinitepay_src.svg")
+letras = [q for q in p if q["fill"] == "#ffffff"]
+write_icon("infinitepay", "#171527", [group(letras, None, C, C, w=LARG_LOGO)])
+
+# CloudWalk: wordmark branco sobre preto (marca usa fundo escuro)
+print("cloudwalk"); p = get_flat_paths("cloudwalk_src.svg")
+write_icon("cloudwalk", "#000000", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Pagar.me: wordmark "pagar.me" branco sobre o verde oficial (selo "stone" fora)
+print("pagarme"); p = get_flat_paths("pagarme_src.svg")
+write_icon("pagarme", "#00af55", [group(p[6:9], ["#ffffff"] * 3, C, C, w=LARG_LOGO, extra="evenodd")])
+
+# RecargaPay: monograma do badge oficial branco sobre o navy do próprio arquivo
+print("recargapay"); p = get_flat_paths("recargapay_src.svg")
+write_icon("recargapay", "#053e6e", [group(p[1:3], ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Creditas: "C" grafite do ícone oficial sobre o verde-lima oficial
+print("creditas"); p = get_flat_paths("creditas_src.svg")
+write_icon("creditas", "#8edb00", [group(p[1:4], None, C, C, fit=FIT_SIMBOLO)])
+
+# Toro: touro vermelho + "toro" branco (asset oficial p/ fundo escuro) sobre preto
+print("toro"); p = get_flat_paths("toro_src.svg")
+write_icon("toro", "#000000", [group(p, None, C, C, w=LARG_LOGO)])
+
+# NG.CASH: wordmark branco sobre preto (marca preto e branco)
+print("ngcash"); p = get_flat_paths("ngcash_src.svg")
+write_icon("ngcash", "#000000", [group(p, None, C, C, w=LARG_LOGO)])
+
+# Pluggy: ícone oficial multicolorido sobre branco
+print("pluggy"); p = get_flat_paths("pluggy_src.svg")
+write_icon("pluggy", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Klavi: tile azul oficial (com o K vazado) sobre branco
+print("klavi"); p = get_flat_paths("klavi_src.svg")
+write_icon("klavi", "#ffffff", [group(p[0:1], None, C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Skrill: wordmark preto oficial sobre branco
+print("skrill"); p = get_flat_paths("skrill_src.svg")
+write_icon("skrill", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])

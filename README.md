@@ -162,7 +162,31 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Stark Bank | — | ✅ | `<StarkBank />` |
 | Zro Bank | — | ✅ | `<ZroBank />` |
 | Revolut | — | ✅ | `<Revolut />` |
+| PayPal | — | ✅ | `<PayPal />` |
+| Wise | — | ✅ | `<Wise />` |
+| Skrill | — | ✅ | `<Skrill />` |
+| RecargaPay | — | ✅ | `<RecargaPay />` |
+| NG.CASH | — | ✅ | `<NGCash />` |
+| Asaas | 461 | ✅ | `<Asaas />` |
+| Celcoin | 509 | ✅ | `<Celcoin />` |
+| QI Tech | 329 | ✅ | `<QITech />` |
+| Bankly | 332 | ✅ | `<Bankly />` |
+| iugu | 401 | ✅ | `<Iugu />` |
+| CloudWalk | 542 | ✅ | `<CloudWalk />` |
+| InfinitePay | — | ✅ | `<InfinitePay />` |
+| Pagar.me | — | ✅ | `<PagarMe />` |
+| Creditas | 342 | ✅ | `<Creditas />` |
+| Warren Investimentos | 371 | ✅ | `<Warren />` |
+| Toro Investimentos | 352 | ✅ | `<Toro />` |
+| Pluggy | — | ✅ | `<Pluggy />` |
+| Klavi | — | ✅ | `<Klavi />` |
 | Banco Master | 243 | 🔜 | — |
+| Contabilizei Bank | — | 🔜 | — |
+| 99Pay | — | 🔜 | — |
+| AstroPay | — | 🔜 | — |
+| Ame Digital | — | 🔜 | — |
+| Nomad | — | 🔜 | — |
+| Superdigital | — | 🔜 | — |
 | Banco Modal | 746 | 🔜 | — |
 | Banco Alfa | 025 | 🔜 | — |
 | Crefisa | 069 | 🔜 | — |
