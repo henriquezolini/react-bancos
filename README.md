@@ -132,7 +132,66 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Banco Sofisa | 637 | ✅ | `<Sofisa />` |
 | Banco ABC Brasil | 246 | ✅ | `<ABCBrasil />` |
 | Citibank Brasil | 745 | ✅ | `<Citibank />` |
+| Banco Arbi | 213 | ✅ | `<Arbi />` |
+| Banese | 047 | ✅ | `<Banese />` |
+| Banco BNP Paribas Brasil | 752 | ✅ | `<BNPParibas />` |
+| Banco BS2 | 218 | ✅ | `<BS2 />` |
+| Cresol | 133 | ✅ | `<Cresol />` |
+| Deutsche Bank Brasil | 487 | ✅ | `<DeutscheBank />` |
+| Digio | 335 | ✅ | `<Digio />` |
+| Banco Fibra | 224 | ✅ | `<Fibra />` |
+| Banco Honda | — | ✅ | `<BancoHonda />` |
+| Banco Inbursa | 012 | ✅ | `<Inbursa />` |
+| Banco Industrial do Brasil | 604 | ✅ | `<IndustrialDoBrasil />` |
+| LetsBank | 630 | ✅ | `<LetsBank />` |
+| Banco Mizuho do Brasil | 370 | ✅ | `<Mizuho />` |
+| Banco Morgan Stanley | 066 | ✅ | `<MorganStanley />` |
+| Banco MUFG Brasil | 456 | ✅ | `<MUFG />` |
+| Omni Banco | 613 | ✅ | `<Omni />` |
+| Banco Paulista | 611 | ✅ | `<Paulista />` |
+| Banco Pine | 643 | ✅ | `<Pine />` |
+| Banco Rendimento | 633 | ✅ | `<Rendimento />` |
+| Banco Société Générale Brasil | 366 | ✅ | `<SocieteGenerale />` |
+| Banco Stellantis | — | ✅ | `<BancoStellantis />` |
+| Banco Sumitomo Mitsui Brasileiro | 464 | ✅ | `<SumitomoMitsui />` |
+| Banco Topázio | 082 | ✅ | `<Topazio />` |
+| Banco Toyota | 387 | ✅ | `<BancoToyota />` |
+| Unicred | 136 | ✅ | `<Unicred />` |
+| Banco Volkswagen | 393 | ✅ | `<BancoVolkswagen />` |
 | Banco Master | 243 | 🔜 | — |
+| Banco Modal | 746 | 🔜 | — |
+| Banco Alfa | 025 | 🔜 | — |
+| Crefisa | 069 | 🔜 | — |
+| Banco Fator | 265 | 🔜 | — |
+| Banco BOCOM BBM | 107 | 🔜 | — |
+| Next | — | 🔜 | — |
+| Banco Carrefour | 368 | 🔜 | — |
+| Banco GM | 390 | 🔜 | — |
+| Banco Mercedes-Benz | 381 | 🔜 | — |
+| Banco John Deere | — | 🔜 | — |
+| Banco CNH Industrial | — | 🔜 | — |
+| Banco J. Safra | 074 | 🔜 | — |
+| Banco Crédit Agricole Brasil | 222 | 🔜 | — |
+| Banco KEB Hana do Brasil | 757 | 🔜 | — |
+| Banco Rabobank | 747 | 🔜 | — |
+| Banco Genial | 125 | 🔜 | — |
+| Banco Andbank | 065 | 🔜 | — |
+| Banco Bari | — | 🔜 | — |
+| Banco Digimais | 654 | 🔜 | — |
+| Banco Voiter | 653 | 🔜 | — |
+| Banco Tricury | 018 | 🔜 | — |
+| Banco Guanabara | 612 | 🔜 | — |
+| Banco Luso Brasileiro | 600 | 🔜 | — |
+| Banco Semear | 743 | 🔜 | — |
+| Banco CCB Brasil | 320 | 🔜 | — |
+| Banco Bexs | — | 🔜 | — |
+| Travelex Bank | 095 | 🔜 | — |
+| Banco Ourinvest | 712 | 🔜 | — |
+| Banco Ribeirão Preto | 741 | 🔜 | — |
+| BDMG | — | 🔜 | — |
+| BRDE | — | 🔜 | — |
+| Banco BNI | — | 🔜 | — |
+| Banco Acesso | — | 🔜 | — |
 
 Sentiu falta de um banco? [Abra uma issue](../../issues) ou envie um PR — o processo de criação está documentado em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

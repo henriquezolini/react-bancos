@@ -183,3 +183,122 @@ write_icon("sofisa", "#17b497", [group(p, ["#fab327", "#ffffff"], C, C, w=LARG_L
 # descarta a bola (path 0) — o ícone do app é só o "will"
 print("willbank"); p = get_paths("willbank_src.svg")
 write_icon("willbank", "#ffd900", [group(p[1:5], ["#000000"] * 4, C, C, w=LARG_LOGO)])
+
+# ---------------------------------------------------------------------------
+# Lote 2 (2026-07-15): bancos da lista extensa. Fontes: Tgentil/Bancos-em-SVG
+# e Wikimedia Commons. bbox de cada shape confere no histórico do projeto.
+# ---------------------------------------------------------------------------
+def _bb(q):
+    return parse_path(q["d"]).bbox()  # (xmin, xmax, ymin, ymax)
+
+# Pine: símbolo (pinheiros) branco sobre o vinho oficial
+print("pine"); p = get_flat_paths("pine_src.svg")
+write_icon("pine", "#661739", [group(p[0:1], ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Topázio: os dois triângulos brancos sobre o teal oficial
+print("topazio"); p = get_flat_paths("topazio_src.svg")
+write_icon("topazio", "#50c3c7", [group(p, ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Rendimento: monograma "R/" branco sobre o azul-marinho oficial
+print("rendimento"); p = get_flat_paths("rendimento_src.svg")
+write_icon("rendimento", "#0a1d6f", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Paulista: monograma "S" nas cores originais sobre branco
+print("paulista"); p = get_flat_paths("paulista_src.svg")
+write_icon("paulista", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Arbi: símbolo circular nas cores originais sobre branco
+print("arbi"); p = get_flat_paths("arbi_src.svg")
+write_icon("arbi", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# BS2: wordmark branco sobre o azul oficial
+print("bs2"); p = get_flat_paths("bs2_src.svg")
+write_icon("bs2", "#3333cc", [group(p, ["#ffffff"] * 3, C, C, w=LARG_LOGO)])
+
+# Industrial do Brasil: "BIB" branco sobre o azul da variante BIB-logo-azul
+print("industrialdobrasil"); p = get_flat_paths("industrialdobrasil_src.svg")
+write_icon("industrialdobrasil", "#001d5d", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Banese: a marca oficial É o quadrado verde com a onda vazada -> reproduz o
+# tile em sangria total (o rect de fundo faz o papel do quadrado), onda branca
+print("banese"); p = get_flat_paths("banese_src.svg")
+p[0]["d"] = filter_subpaths(p[0]["d"], lambda bb: (bb[3] - bb[2]) < 3000)
+write_icon("banese", "#00622a", [group(p, ["#ffffff"], C, C, w=VB, box=(0, 2, 3336, 3336))])
+
+# Cresol: marca verde oficial sobre o laranja oficial (tile descartado)
+print("cresol"); p = get_flat_paths("cresol_src.svg")
+write_icon("cresol", "#ef8124", [group(p[1:2], None, C, C, fit=FIT_SIMBOLO)])
+
+# Unicred: marca dourada sobre o verde oficial (cores do arquivo "verde.svg")
+print("unicred"); p = get_flat_paths("unicred_src.svg")
+write_icon("unicred", "#004a35", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# LetsBank: blocos neon originais sobre preto
+print("letsbank"); p = get_flat_paths("letsbank_src.svg")
+write_icon("letsbank", "#0d0d0d", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# MUFG: símbolo branco sobre o vermelho oficial
+print("mufg"); p = get_flat_paths("mufg_src.svg")
+write_icon("mufg", "#e30613", [group(p, ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Omni: oval em laranja chapado (a fonte usa gradiente laranja) + "omni" azul, sobre branco
+print("omni"); p = get_flat_paths("omni_src.svg")
+fills = ["#f47920", "#f47920"] + [q["fill"] for q in p[2:]]
+write_icon("omni", "#ffffff", [group(p, fills, C, C, w=LARG_LOGO)])
+
+# BNP Paribas: estrelas/curva brancas sobre o verde oficial (tile e sombras fora)
+print("bnpparibas"); p = get_flat_paths("bnpparibas_src.svg")
+write_icon("bnpparibas", "#00915a", [group(p[6:10], None, C, C, fit=FIT_SIMBOLO)])
+
+# Fibra: lockup "BANCO FIBRA" branco sobre o azul oficial
+print("fibra"); p = get_flat_paths("fibra_src.svg")
+write_icon("fibra", "#082a4d", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Digio: wordmark branco + detalhe ciano sobre o grafite oficial
+print("digio"); p = get_flat_paths("digio_src.svg")
+write_icon("digio", "#23292e", [group(p, ["#00a0e6", "#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Banco Toyota: emblema (sem o wordmark) branco sobre o vermelho oficial
+print("toyota"); p = get_flat_paths("toyota_src.svg")
+p[0]["d"] = filter_subpaths(p[0]["d"], lambda bb: bb[3] < 560)
+write_icon("toyota", "#eb0a1e", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Banco Stellantis: wordmark branco sobre o azul oficial
+print("stellantis"); p = get_flat_paths("stellantis_src.svg")
+write_icon("stellantis", "#243882", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Banco Morgan Stanley: wordmark original sobre branco
+print("morganstanley"); p = get_flat_paths("morganstanley_src.svg")
+write_icon("morganstanley", "#ffffff", [group(p, None, C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Banco Mizuho: letras brancas do tile oficial sobre o azul do próprio tile
+print("mizuho"); p = get_flat_paths("mizuho_src.svg")
+write_icon("mizuho", "#37498b", [group(p[1:6], None, C, C, w=LARG_LOGO)])
+
+# Sumitomo Mitsui (SMBC): marca sol-nascente nas cores originais sobre branco
+print("sumitomo"); p = get_flat_paths("sumitomo_src.svg")
+sym = [q for q in p if _bb(q)[1] < 30]
+write_icon("sumitomo", "#ffffff", [group(sym, None, C, C, fit=FIT_SIMBOLO)])
+
+# Société Générale: marca compacta (SG + bandeira) original sobre branco, sem o texto
+print("socgen"); p = get_flat_paths("socgen_src.svg")
+sym = [q for q in p if _bb(q)[1] < 100]
+write_icon("socgen", "#ffffff", [group(sym, None, C, C, w=LARG_LOGO)])
+
+# Inbursa: cruz oficial branca sobre o azul-marinho oficial
+print("inbursa"); p = get_flat_paths("inbursa_src.svg")
+sym = [q for q in p if _bb(q)[1] < 760]
+write_icon("inbursa", "#012148", [group(sym, ["#ffffff"] * len(sym), C, C, fit=FIT_SIMBOLO)])
+
+# Banco Volkswagen: emblema VW branco sobre o azul oficial
+print("volkswagen"); p = get_flat_paths("volkswagen_src.svg")
+write_icon("volkswagen", "#001e50", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Deutsche Bank: quadrado com barra, branco sobre o azul oficial
+print("deutsche"); p = get_flat_paths("deutsche_src.svg")
+write_icon("deutsche", "#0018a8", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Banco Honda: asa (sem o wordmark) branca sobre o vermelho oficial
+print("honda"); p = get_flat_paths("honda_src.svg")
+wing = [q for q in p if _bb(q)[3] < 1350]
+write_icon("honda", "#da251d", [group(wing, ["#ffffff"] * len(wing), C, C, fit=FIT_SIMBOLO)])
