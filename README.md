@@ -25,6 +25,10 @@
   <img src="https://img.shields.io/badge/feito%20no-Brasil%20%F0%9F%87%A7%F0%9F%87%B7-009c3b" alt="Feito no Brasil" />
 </p>
 
+<p align="center">
+  <strong>🔎 <a href="https://henriquezolini.github.io/react-bancos/">Veja todos os ícones ao vivo</a></strong> — busque por nome ou código, ajuste tamanho e raio, e copie o import com um clique.
+</p>
+
 ---
 
 Todo produto brasileiro que lida com dinheiro esbarra no mesmo problema: mostrar **de qual banco** é aquela conta, chave Pix, boleto ou cartão. Este pacote resolve isso de uma vez — um componente por banco, todos no mesmo padrão visual (quadrado, fundo na cor da marca, logo oficial centralizado com área de respiro consistente), prontos para listas de contas, extratos, seletores de instituição e telas de Pix.
