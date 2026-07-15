@@ -53,8 +53,13 @@ python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/s
      `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srsearch=<banco>+logo+svg`
      e baixar via `https://commons.wikimedia.org/wiki/Special:FilePath/<Nome do arquivo>`.
    - simple-icons: `https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/<slug>.svg`.
-   - iconape.com (achar a URL do asset no HTML da página).
+   - Coleções no GitHub (com `gh` autenticado: `gh api "search/code?q=<banco>+extension:svg"`);
+     a coleção `Tgentil/Bancos-em-SVG` cobre muitos bancos brasileiros.
+   - O próprio site do banco (`curl -A "Mozilla/5.0" <site> | grep -oE '"[^"]*\.svg[^"]*"'`) —
+     foi assim que saiu o `will.svg` oficial; a cor da marca costuma estar no CSS do site.
+   - iconape.com (achar a URL do asset no HTML da página do logo; a busca `?s=` não funciona).
    - Obs.: worldvectorlogo/brandfetch CDN são inacessíveis no sandbox (proxy retorna 502).
+   - **Se não houver vetor confiável, o banco fica de fora** (ex.: Banco Master) — nunca desenhar à mão.
 2. **Salvar** em `tools/sources/<slug>_src.svg` e **adicionar um bloco** em `tools/compose.py`
    (requer `pip install --user svgpathtools`), depois rodar `python3 tools/compose.py`.
 3. **Registrar** o banco em `scripts/banks-data.mjs` (slug, component PascalCase, nome, COMPE).
@@ -67,6 +72,10 @@ python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/s
 
 - **Flags de arco compactadas** (`a4.827 4.827 0 004.835-4.835`, comum no simple-icons) quebram
   `svgpathtools` e ImageMagick → expandir para `0 0 0 4.835,-4.835` (o `compose.py` já faz no PagBank).
+- **Fontes com `transform` em grupos ou formas que não são `<path>`** (rect/circle/polygon):
+  `get_paths` ignora ambos — usar `get_flat_paths` (via `pip install svgelements`), que achata
+  transforms, converte formas em paths e resolve o fill herdado (usado em brb, daycoval,
+  citibank, banestes).
 - Ao extrair `d` de um `<path>` por regex, usar `\sd="…"` — senão casa com `id="…"`/`data-name="…"`.
 - Os SVGs antigos (Inkscape) têm `<style>` globais com classes `.st0`/ids `#SVGID_n_` que colidem
   entre arquivos. `scripts/svg-utils.mjs` resolve prefixando tudo com o slug — por isso os

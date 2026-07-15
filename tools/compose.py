@@ -28,6 +28,21 @@ def bbox(paths):
         x0, x1, y0, y1 = min(x0, a), max(x1, b), min(y0, c), max(y1, d)
     return x0, y0, x1 - x0, y1 - y0
 
+def get_flat_paths(fname):
+    """Extrai TODOS os desenhos (paths, rects, círculos…) com transforms aplicados
+    e fill resolvido (herdado de grupos/CSS), via svgelements. Retorna a mesma
+    estrutura de get_paths: [{d, fill, cls}]. Use quando o SVG fonte tem
+    transforms em grupos ou formas que não são <path>."""
+    from svgelements import SVG, Path as SEPath, Shape
+    out = []
+    for el in SVG.parse(str(SRC / fname), reify=True).elements():
+        if isinstance(el, Shape) and not isinstance(el, SEPath):
+            el = SEPath(el)
+        if isinstance(el, SEPath) and len(el):
+            fill = el.fill.hexrgb if el.fill is not None and el.fill.value is not None else None
+            out.append({"d": el.d(), "fill": fill, "cls": None})
+    return out
+
 def filter_subpaths(d, keep):
     """Mantém apenas os subpaths cujo bbox (xmin,xmax,ymin,ymax) passa no filtro."""
     subs = parse_path(d).continuous_subpaths()
@@ -115,3 +130,53 @@ CLS = {"cls-1": "#0a0080", "cls-2": "#ffffff", "cls-3": "#00bcff"}
 sym = p[0:5]
 fills = [CLS.get(q["cls"], "#0a0080") for q in sym]
 write_icon("mercadopago", "#00bcff", [group(sym, fills, C, C, fit=FIT_SIMBOLO)])
+
+# ABC Brasil: lockup compacto oficial (não há símbolo separado) branco sobre o escuro do arquivo
+print("abcbrasil"); p = get_paths("abcbrasil_src.svg")
+write_icon("abcbrasil", "#1e1e1e", [group(p, ["#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Agibank: marca reduzida oficial "agi" branca, mantendo o ponto verde
+print("agibank"); p = get_paths("agibank_src.svg")
+write_icon("agibank", "#266bff",
+           [group(p, ["#2fc750", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Banco da Amazônia (2025): só o símbolo verde-claro sobre o verde-escuro oficial
+print("bancodaamazonia"); p = get_paths("bancodaamazonia_src.svg")
+sym = [q for q in p if q["fill"] == "#00e12d"]
+write_icon("bancodaamazonia", "#003c2d", [group(sym, None, C, C, fit=FIT_SIMBOLO)])
+
+# Banco do Nordeste: só o símbolo (flor), vinho recolorido p/ branco, laranja mantido
+print("bancodonordeste"); p = get_paths("bancodonordeste_src.svg")
+write_icon("bancodonordeste", "#a6193c",
+           [group(p[0:2], ["#f68b1f", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Banestes: só o símbolo (laço "B"); o path único traz símbolo+texto -> filtra subpaths
+print("banestes"); p = get_flat_paths("banestes_src.svg")
+p[0]["d"] = filter_subpaths(p[0]["d"], lambda bb: bb[0] < 120)
+write_icon("banestes", "#004b8d", [group(p[0:1], ["#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# BRB: símbolo duotônico (vela + onda); parte navy vira branca sobre o navy oficial
+print("brb"); p = get_flat_paths("brb_full_src.svg")
+write_icon("brb", "#173e7d", [group(p, ["#00adef", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Citi: wordmark "citi" branco com o arco vermelho oficial sobre o azul Citi
+print("citibank"); p = get_flat_paths("citibank_src.svg")
+write_icon("citibank", "#255be3",
+           [group(p, ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ff3c28"], C, C, w=LARG_LOGO)])
+
+# Daycoval: símbolo do app ("D" + quadrados) nas cores originais sobre o navy oficial
+print("daycoval"); p = get_flat_paths("daycoval_src.svg")
+write_icon("daycoval", "#001c55", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Mercantil: wordmark novo (não há símbolo separado no vetor) branco sobre o azul oficial
+print("mercantil"); p = get_paths("mercantil_src.svg")
+write_icon("mercantil", "#1526ff", [group(p, ["#ffffff"], C, C, w=LARG_LOGO)])
+
+# Sofisa: wordmark oficial, teal recolorido p/ branco mantendo o "Banco" amarelo
+print("sofisa"); p = get_paths("sofisa_src.svg")
+write_icon("sofisa", "#17b497", [group(p, ["#fab327", "#ffffff"], C, C, w=LARG_LOGO)])
+
+# Will Bank: wordmark "will" preto sobre o amarelo oficial do site (#ffd900);
+# descarta a bola (path 0) — o ícone do app é só o "will"
+print("willbank"); p = get_paths("willbank_src.svg")
+write_icon("willbank", "#ffd900", [group(p[1:5], ["#000000"] * 4, C, C, w=LARG_LOGO)])

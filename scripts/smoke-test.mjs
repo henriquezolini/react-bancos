@@ -24,7 +24,7 @@ for (const bank of banks) {
   check(html.includes("<title>"), `${bank.slug}: <title> acessível ausente`);
   check(html.includes("viewBox"), `${bank.slug}: viewBox ausente`);
   check(/#[0-9a-f]{6}/i.test(bank.color ?? ""), `${bank.slug}: metadado color inválido (${bank.color})`);
-  check(/^\d{3}$/.test(bank.compe ?? ""), `${bank.slug}: compe inválido (${bank.compe})`);
+  check(bank.compe === null || /^\d{3}$/.test(bank.compe), `${bank.slug}: compe inválido (${bank.compe})`);
 }
 
 // ids/classes não podem colidir entre ícones renderizados na mesma página

@@ -117,18 +117,18 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | PicPay | 380 | ✅ | `<PicPay />` |
 | PagBank | 290 | ✅ | `<PagBank />` |
 | Stone | 197 | ✅ | `<Stone />` |
-| Banco Daycoval | 707 | 🔜 | — |
-| BRB — Banco de Brasília | 070 | 🔜 | — |
-| Banco do Nordeste | 004 | 🔜 | — |
-| Banco da Amazônia | 003 | 🔜 | — |
-| Banestes | 021 | 🔜 | — |
-| Mercantil do Brasil | 389 | 🔜 | — |
-| Agibank | 121 | 🔜 | — |
-| Will Bank | — | 🔜 | — |
-| Banco Sofisa | 637 | 🔜 | — |
+| Banco Daycoval | 707 | ✅ | `<Daycoval />` |
+| BRB — Banco de Brasília | 070 | ✅ | `<BRB />` |
+| Banco do Nordeste | 004 | ✅ | `<BancoDoNordeste />` |
+| Banco da Amazônia | 003 | ✅ | `<BancoDaAmazonia />` |
+| Banestes | 021 | ✅ | `<Banestes />` |
+| Banco Mercantil | 389 | ✅ | `<Mercantil />` |
+| Agibank | 121 | ✅ | `<Agibank />` |
+| Will Bank | — | ✅ | `<WillBank />` |
+| Banco Sofisa | 637 | ✅ | `<Sofisa />` |
+| Banco ABC Brasil | 246 | ✅ | `<ABCBrasil />` |
+| Citibank Brasil | 745 | ✅ | `<Citibank />` |
 | Banco Master | 243 | 🔜 | — |
-| Banco ABC Brasil | 246 | 🔜 | — |
-| Citibank Brasil | 745 | 🔜 | — |
 
 Sentiu falta de um banco? [Abra uma issue](../../issues) ou envie um PR — o processo de criação está documentado em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
