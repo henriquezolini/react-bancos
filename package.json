@@ -1,6 +1,6 @@
 {
   "name": "react-bancos",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Ícones dos principais bancos e fintechs do Brasil como componentes React — padronizados, fiéis às marcas e com metadados (nome, código COMPE, cor).",
   "keywords": [
     "react",

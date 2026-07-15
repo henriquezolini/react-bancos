@@ -109,12 +109,30 @@ write_icon("sicredi", "#3fa110", [group(p[0:2], ["#ffffff", "#ffffff"], C, C, fi
 print("sicoob"); p = get_paths("sicoob_src.svg")
 write_icon("sicoob", "#003641", [group(p[1:4], None, C, C, fit=FIT_SIMBOLO)])
 
-# XP Investimentos: "XP" branco sobre preto. As letterforms vêm do vetor xp_src
-# (path 2 = X e P completos); a flâmula azul e o "inc." — que são da holding
-# XP Inc., não do banco — ficam de fora. O tile xpinvestimentos_src não serve
-# de fonte porque as letras vazadas sangram recortadas pela borda.
-print("xp"); p = get_paths("xp_src.svg")
-write_icon("xp", "#000000", [group([p[2]], ["#ffffff"], C, C, w=LARG_LOGO)])
+# XP: tile oficial do app (xp_tile_src, fornecido pelo dono) com o "xp" vazado
+# no canto inferior direito — a posição faz parte do ícone. Os 4 cantos
+# arredondados do tile viram retos (substituição dos arcos por linhas), e o
+# tile é ancorado no canto inferior-direito do canvas; como ele é mais largo
+# que alto, o rect preto de fundo completa a faixa do topo. As letras aparecem
+# via um rect branco desenhado sob o tile (os vazados revelam o branco).
+print("xp")
+_raw = (SRC / "xp_tile_src.svg").read_text()
+_d = re.search(r'\sd="([^"]+)"', _raw).group(1)
+for _old, _new in [
+    ("V3.89641C30.0276 1.49309 28.7845 0.25 26.3812 0.25H", "V0.25H"),          # canto sup. dir.
+    ("H3.64641C1.24309 0.25 0 1.49309 0 3.89641V", "H0V"),                      # canto sup. esq.
+    ("V23.703C0 26.0787 1.24309 27.3218 3.64641 27.3218Z", "V27.3218Z"),        # canto inf. esq.
+    ("H26.3812C28.7845 27.3218 30.0276 26.0787 30.0276 23.6754V", "H30.0276V"), # canto inf. dir.
+]:
+    assert _old in _d, _old[:30]
+    _d = _d.replace(_old, _new)
+_s = VB / 30.0276
+_topo = VB - _s * 27.0718           # início do tile no canvas (faixa preta acima)
+_ty = _topo - _s * 0.25
+write_icon("xp", "#000000", [
+    f'  <rect style="fill:#ffffff" x="0.05" y="{_topo + 0.03:.4f}" width="{VB - 0.1:.4f}" height="{_s * 27.0718 - 0.08:.4f}" />',
+    f'  <g transform="translate(0,{_ty:.4f}) scale({_s:.5f})">\n    <path d="{_d}" style="fill:#000000" />\n  </g>',
+])
 
 # PagBank: símbolo PagSeguro/PagBank (simple-icons) branco sobre verde PagBank
 # (flags de arco compactadas tipo "0 004.835" são expandidas p/ compatibilidade)
