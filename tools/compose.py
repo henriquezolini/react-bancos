@@ -129,8 +129,10 @@ for _old, _new in [
 _s = VB / 30.0276
 _topo = VB - _s * 27.0718           # início do tile no canvas (faixa preta acima)
 _ty = _topo - _s * 0.25
+# o rect branco fica só sob a região das letras (topo em y=45, letras começam
+# em ~58) — encostá-lo na borda superior do tile vaza uma linha no antialiasing
 write_icon("xp", "#000000", [
-    f'  <rect style="fill:#ffffff" x="0.05" y="{_topo + 0.03:.4f}" width="{VB - 0.1:.4f}" height="{_s * 27.0718 - 0.08:.4f}" />',
+    f'  <rect style="fill:#ffffff" x="15" y="45" width="{VB - 15:.4f}" height="{VB - 45:.4f}" />',
     f'  <g transform="translate(0,{_ty:.4f}) scale({_s:.5f})">\n    <path d="{_d}" style="fill:#000000" />\n  </g>',
 ])
 
