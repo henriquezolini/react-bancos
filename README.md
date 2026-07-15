@@ -50,14 +50,15 @@ import { Nubank, Itau, BancoDoBrasil } from "react-bancos";
 <BancoDoBrasil size="3rem" title="Conta corrente BB" />
 ```
 
-Veio só o **código do banco** da sua API? Use `getBank`:
+Veio só o **código do banco** da sua API? Busque pelo COMPE, nome ou slug:
 
 ```tsx
-import { getBank } from "react-bancos";
+import { banks, getBankByCompe } from "react-bancos";
 
-const banco = getBank("260"); // ou getBank(260), ou getBank("nubank")
-// → { slug: "nubank", name: "Nubank", compe: "260", color: "#820ad1", Icon: [Componente] }
+const dados = getBankByCompe(260); // aceita 260, "260" ou "77" (completa os zeros)
+// → { slug: "nubank", name: "Nubank", compe: "260", color: "#820ad1" }
 
+const banco = banks.find((b) => b.slug === dados?.slug);
 {banco && <banco.Icon size={24} radius={6} title={banco.name} />}
 ```
 
@@ -82,6 +83,30 @@ Todos os componentes aceitam qualquer prop de `<svg>` (`className`, `onClick`, �
 | `size` | `number \| string` | `48` | Largura e altura. Número vira `px`. |
 | `radius` | `number \| string` | — | `border-radius` dos cantos (ex.: `8`, `"50%"`). |
 | `title` | `string` | nome do banco | Título acessível (`<title>` + `aria-label`). |
+
+### Em Node, APIs e backends (sem React)
+
+Precisa só dos **dados** — lista completa, nome, código COMPE, cor — num backend?
+Importe de **`react-bancos/data`**: é um módulo puro, sem React e sem JSX, que funciona
+em qualquer ambiente Node (ESM e CommonJS):
+
+```js
+import {
+  banksData,        // lista completa: { slug, name, compe, color }[]
+  getBankByCompe,   // busca pelo código Bacen: getBankByCompe(341) / "341" / "77"
+  getBankByName,    // ignora acentos/caixa: "itau" → Itaú Unibanco
+  getBankBySlug,    // slug exato: "nubank"
+  searchBanks,      // busca livre por nome, slug ou COMPE → array
+} from "react-bancos/data";
+
+getBankByCompe(341);           // → { slug: "itau", name: "Itaú Unibanco", compe: "341", color: "#fe6100" }
+getBankByName("mercado pago"); // → { slug: "mercadopago", ... }
+searchBanks("banco");          // → todas as instituições com "banco" no nome
+```
+
+As mesmas funções também são exportadas pelo pacote principal (`react-bancos`),
+para quem já está no front. `getBank(slug | compe)` continua existindo, mas está
+**deprecated** em favor das buscas específicas.
 
 ### SVGs puros
 
@@ -248,6 +273,18 @@ npm test           # build + smoke test (SSR de todos os ícones)
 ```
 
 O guia completo para criar um novo ícone fiel à marca está em [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Autor
+
+<table>
+  <tr>
+    <td><a href="https://henriquezolini.com/"><img src="https://github.com/henriquezolini.png?size=96" width="72" height="72" alt="Henrique Zolini" style="border-radius: 50%" /></a></td>
+    <td>
+      Feito por <strong><a href="https://henriquezolini.com/">Henrique Zolini</a></strong><br/>
+      <a href="https://github.com/henriquezolini">@henriquezolini</a> · <a href="https://henriquezolini.com/">henriquezolini.com</a>
+    </td>
+  </tr>
+</table>
 
 ## Aviso legal
 

@@ -42,32 +42,93 @@ export const ${b.component} = createBankIcon({
   writeFileSync(join(OUT, `${b.component}.tsx`), tsx);
 }
 
-const banksTs = `// Gerado por scripts/build-icons.mjs — não editar manualmente.
-import type { BankIconComponent } from "./createBankIcon";
-${sanitized.map((b) => `import { ${b.component} } from "./icons/${b.component}";`).join("\n")}
+const dataTs = `// Gerado por scripts/build-icons.mjs — não editar manualmente.
+// Módulo SÓ de dados: sem React/JSX, seguro para Node, APIs e backends.
+// Importe via "react-bancos/data".
 
-export interface Bank {
+export interface BankData {
   /** Identificador do arquivo/ícone (ex.: "nubank") */
   slug: string;
-  /** Nome do banco (ex.: "Nubank") */
+  /** Nome da instituição (ex.: "Nubank") */
   name: string;
   /** Código de compensação Bacen (ex.: "260") ou null */
   compe: string | null;
   /** Cor de fundo do ícone (ex.: "#820ad1") ou null */
   color: string | null;
+}
+
+/** Lista completa das instituições disponíveis, em ordem alfabética de slug. */
+export const banksData: BankData[] = [
+${sanitized.map((b) => `  { slug: ${JSON.stringify(b.slug)}, name: ${JSON.stringify(b.name)}, compe: ${JSON.stringify(b.compe)}, color: ${JSON.stringify(b.background)} },`).join("\n")}
+];
+
+const normalize = (s: string): string =>
+  s.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().trim();
+
+/** Busca pelo código COMPE do Bacen. Aceita "341", 341 ou "77" (completa os zeros). */
+export function getBankByCompe(compe: string | number): BankData | undefined {
+  const c = String(compe).trim().padStart(3, "0");
+  return banksData.find((b) => b.compe === c);
+}
+
+/** Busca pelo slug exato (ex.: "nubank", "bancodobrasil"). */
+export function getBankBySlug(slug: string): BankData | undefined {
+  const s = normalize(slug);
+  return banksData.find((b) => b.slug === s);
+}
+
+/**
+ * Busca pelo nome, ignorando acentos e maiúsculas ("itaú unibanco" === "Itau Unibanco").
+ * Se não houver correspondência exata, tenta correspondência parcial ("itau" → Itaú Unibanco).
+ */
+export function getBankByName(name: string): BankData | undefined {
+  const n = normalize(name);
+  if (!n) return undefined;
+  return (
+    banksData.find((b) => normalize(b.name) === n) ??
+    banksData.find((b) => normalize(b.name).includes(n) || b.slug.includes(n.replace(/\\s+/g, "")))
+  );
+}
+
+/** Busca livre por nome, slug ou COMPE; retorna todas as correspondências. */
+export function searchBanks(query: string): BankData[] {
+  const q = normalize(query);
+  if (!q) return [];
+  return banksData.filter(
+    (b) =>
+      normalize(b.name).includes(q) ||
+      b.slug.includes(q.replace(/\\s+/g, "")) ||
+      (b.compe ?? "").includes(q)
+  );
+}
+`;
+writeFileSync(join(root, "src", "data.ts"), dataTs);
+
+const banksTs = `// Gerado por scripts/build-icons.mjs — não editar manualmente.
+import type { BankIconComponent } from "./createBankIcon";
+import { banksData, getBankByCompe, getBankBySlug, type BankData } from "./data";
+${sanitized.map((b) => `import { ${b.component} } from "./icons/${b.component}";`).join("\n")}
+
+export interface Bank extends BankData {
   /** Componente React do ícone */
   Icon: BankIconComponent;
 }
 
-/** Todos os bancos disponíveis, em ordem alfabética de slug. */
-export const banks: Bank[] = [
-${sanitized.map((b) => `  { slug: ${JSON.stringify(b.slug)}, name: ${JSON.stringify(b.name)}, compe: ${JSON.stringify(b.compe)}, color: ${JSON.stringify(b.background)}, Icon: ${b.component} },`).join("\n")}
-];
+const ICONS: Record<string, BankIconComponent> = {
+${sanitized.map((b) => `  ${JSON.stringify(b.slug)}: ${b.component},`).join("\n")}
+};
 
-/** Busca um banco pelo slug ("nubank") ou código COMPE ("260" ou 260). */
+/** Todos os bancos disponíveis (com componente), em ordem alfabética de slug. */
+export const banks: Bank[] = banksData.map((b) => ({ ...b, Icon: ICONS[b.slug] }));
+
+/**
+ * Busca um banco pelo slug ("nubank") ou código COMPE ("260" ou 260).
+ * @deprecated Prefira getBankBySlug, getBankByCompe ou getBankByName —
+ * e, em Node/APIs sem React, importe de "react-bancos/data".
+ */
 export function getBank(query: string | number): Bank | undefined {
-  const q = String(query).toLowerCase();
-  return banks.find((b) => b.slug === q || b.compe === q.padStart(3, "0"));
+  const hit = getBankBySlug(String(query)) ?? getBankByCompe(query);
+  return hit && banks.find((b) => b.slug === hit.slug);
 }
 `;
 writeFileSync(join(root, "src", "banks.ts"), banksTs);
@@ -77,6 +138,8 @@ export { createBankIcon } from "./createBankIcon";
 export type { BankIconProps, BankIconComponent, BankDef } from "./createBankIcon";
 export { banks, getBank } from "./banks";
 export type { Bank } from "./banks";
+export { banksData, getBankByCompe, getBankBySlug, getBankByName, searchBanks } from "./data";
+export type { BankData } from "./data";
 ${sanitized.map((b) => `export { ${b.component} } from "./icons/${b.component}";`).join("\n")}
 `;
 writeFileSync(join(root, "src", "index.ts"), indexTs);

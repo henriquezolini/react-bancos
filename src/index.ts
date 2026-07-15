@@ -3,6 +3,8 @@ export { createBankIcon } from "./createBankIcon";
 export type { BankIconProps, BankIconComponent, BankDef } from "./createBankIcon";
 export { banks, getBank } from "./banks";
 export type { Bank } from "./banks";
+export { banksData, getBankByCompe, getBankBySlug, getBankByName, searchBanks } from "./data";
+export type { BankData } from "./data";
 export { ABCBrasil } from "./icons/ABCBrasil";
 export { Agibank } from "./icons/Agibank";
 export { Arbi } from "./icons/Arbi";

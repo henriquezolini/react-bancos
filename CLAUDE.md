@@ -9,7 +9,9 @@ distribuídos como componentes React tipados com metadados (nome, código COMPE,
 icons/<slug>.svg     SVGs finais — fonte da verdade (slug minúsculo, sem espaços/acentos)
 src/createBankIcon.tsx  fábrica dos componentes (única parte de src/ editada à mão)
 src/icons/*.tsx      componentes GERADOS — nunca editar manualmente
-src/banks.ts         metadados GERADOS (banks[], getBank)
+src/data.ts          GERADO: dados puros sem React (banksData, getBankByCompe/Name/Slug,
+                     searchBanks) — publicado como subpath "react-bancos/data" p/ Node/APIs
+src/banks.ts         GERADO: banks[] (dados + componente Icon) e getBank (deprecated)
 scripts/banks-data.mjs  registro de bancos: slug, componente, nome, COMPE, override de cor
 scripts/build-icons.mjs gera src/ a partir de icons/ (sanitização anti-colisão)
 scripts/build-docs.mjs  gera docs/index.html (showcase interativo, ícones inline)

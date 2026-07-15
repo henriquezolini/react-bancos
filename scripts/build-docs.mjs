@@ -10,6 +10,7 @@ import { sanitizeSvg, assertNoCollisions } from "./svg-utils.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const VERSION = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+const AVATAR = `data:image/jpeg;base64,${readFileSync(join(root, "assets", "autor.png")).toString("base64")}`;
 mkdirSync(join(root, "docs"), { recursive: true });
 
 const data = BANKS.map((b) => {
@@ -145,6 +146,9 @@ footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--lin
   color: var(--muted); font-size: .8rem; }
 footer a { color: var(--accent); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
+.autor { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+.autor img { width: 44px; height: 44px; border-radius: 50%; display: block; }
+.autor b { display: block; color: var(--ink); font-size: .875rem; }
 #toast {
   position: fixed; left: 50%; bottom: 1.75rem; transform: translate(-50%, 12px);
   background: var(--toast-bg); color: var(--toast-ink); font-size: .8125rem; font-weight: 500;
@@ -191,17 +195,25 @@ footer a:hover { text-decoration: underline; }
   <p class="hint">Clique em um card para copiar o import do componente.</p>
 
   <h2>Uso</h2>
-  <pre><span class="k">import</span> { Nubank, Itau, banks, getBank } <span class="k">from</span> <span class="s">"react-bancos"</span>;
+  <pre><span class="k">import</span> { Nubank, banks, getBankByCompe } <span class="k">from</span> <span class="s">"react-bancos"</span>;
 
 <span class="c">// direto</span>
 &lt;Nubank size={48} radius={12} /&gt;
 
 <span class="c">// a partir do código COMPE que veio da sua API</span>
-<span class="k">const</span> banco = getBank(<span class="s">"260"</span>); <span class="c">// → { name: "Nubank", compe: "260", color: "#820ad1", Icon }</span>
-banco &amp;&amp; &lt;banco.Icon size={32} title={banco.name} /&gt;
+<span class="k">const</span> dados = getBankByCompe(260); <span class="c">// → { slug: "nubank", name: "Nubank", compe: "260", color: "#820ad1" }</span>
 
 <span class="c">// listar todos</span>
 banks.map(({ slug, Icon }) =&gt; &lt;Icon key={slug} size={40} radius={8} /&gt;)</pre>
+
+  <h2>Em Node / APIs (sem React)</h2>
+  <pre><span class="c">// módulo só de dados — sem React e sem JSX, para backends</span>
+<span class="k">import</span> { banksData, getBankByCompe, getBankByName, searchBanks } <span class="k">from</span> <span class="s">"react-bancos/data"</span>;
+
+banksData.length;               <span class="c">// lista completa: { slug, name, compe, color }[]</span>
+getBankByCompe(<span class="s">"77"</span>);           <span class="c">// completa os zeros → Banco Inter</span>
+getBankByName(<span class="s">"itau"</span>);          <span class="c">// ignora acentos e caixa → Itaú Unibanco</span>
+searchBanks(<span class="s">"banco"</span>);           <span class="c">// busca livre por nome, slug ou COMPE</span></pre>
 
   <h2>Props</h2>
   <table>
@@ -219,6 +231,14 @@ banks.map(({ slug, Icon }) =&gt; &lt;Icon key={slug} size={40} radius={8} /&gt;)
   Metadados via <code>banks</code> e <code>getBank(slug | compe)</code>.</p>
 
   <footer>
+    <div class="autor">
+      <a href="https://henriquezolini.com/"><img src="${AVATAR}" alt="Henrique Zolini" /></a>
+      <div>
+        <b>Feito por Henrique Zolini</b>
+        <a href="https://henriquezolini.com/">henriquezolini.com</a> ·
+        <a href="https://github.com/henriquezolini">@henriquezolini</a>
+      </div>
+    </div>
     Contribuições são bem-vindas em
     <a href="https://github.com/henriquezolini/react-bancos">github.com/henriquezolini/react-bancos</a> —
     o guia está no CONTRIBUTING.md. Os logos são marcas registradas de seus respectivos titulares,

@@ -125,6 +125,9 @@ footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--lin
   color: var(--muted); font-size: .8rem; }
 footer a { color: var(--accent); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
+.autor { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+.autor img { width: 44px; height: 44px; border-radius: 50%; display: block; }
+.autor b { display: block; color: var(--ink); font-size: .875rem; }
 #toast {
   position: fixed; left: 50%; bottom: 1.75rem; transform: translate(-50%, 12px);
   background: var(--toast-bg); color: var(--toast-ink); font-size: .8125rem; font-weight: 500;
@@ -138,7 +141,7 @@ footer a:hover { text-decoration: underline; }
 </style>
 <div class="wrap">
   <nav>
-    <a class="brand" href="#">react-bancos<span class="v">v0.5.1</span></a>
+    <a class="brand" href="#">react-bancos<span class="v">v0.6.0</span></a>
     <a class="link" href="https://www.npmjs.com/package/react-bancos">npm</a>
     <a class="link" href="https://github.com/henriquezolini/react-bancos">GitHub</a>
     <button id="theme" title="Alternar tema" aria-label="Alternar tema">◐</button>
@@ -171,17 +174,25 @@ footer a:hover { text-decoration: underline; }
   <p class="hint">Clique em um card para copiar o import do componente.</p>
 
   <h2>Uso</h2>
-  <pre><span class="k">import</span> { Nubank, Itau, banks, getBank } <span class="k">from</span> <span class="s">"react-bancos"</span>;
+  <pre><span class="k">import</span> { Nubank, banks, getBankByCompe } <span class="k">from</span> <span class="s">"react-bancos"</span>;
 
 <span class="c">// direto</span>
 &lt;Nubank size={48} radius={12} /&gt;
 
 <span class="c">// a partir do código COMPE que veio da sua API</span>
-<span class="k">const</span> banco = getBank(<span class="s">"260"</span>); <span class="c">// → { name: "Nubank", compe: "260", color: "#820ad1", Icon }</span>
-banco &amp;&amp; &lt;banco.Icon size={32} title={banco.name} /&gt;
+<span class="k">const</span> dados = getBankByCompe(260); <span class="c">// → { slug: "nubank", name: "Nubank", compe: "260", color: "#820ad1" }</span>
 
 <span class="c">// listar todos</span>
 banks.map(({ slug, Icon }) =&gt; &lt;Icon key={slug} size={40} radius={8} /&gt;)</pre>
+
+  <h2>Em Node / APIs (sem React)</h2>
+  <pre><span class="c">// módulo só de dados — sem React e sem JSX, para backends</span>
+<span class="k">import</span> { banksData, getBankByCompe, getBankByName, searchBanks } <span class="k">from</span> <span class="s">"react-bancos/data"</span>;
+
+banksData.length;               <span class="c">// lista completa: { slug, name, compe, color }[]</span>
+getBankByCompe(<span class="s">"77"</span>);           <span class="c">// completa os zeros → Banco Inter</span>
+getBankByName(<span class="s">"itau"</span>);          <span class="c">// ignora acentos e caixa → Itaú Unibanco</span>
+searchBanks(<span class="s">"banco"</span>);           <span class="c">// busca livre por nome, slug ou COMPE</span></pre>
 
   <h2>Props</h2>
   <table>
@@ -199,6 +210,14 @@ banks.map(({ slug, Icon }) =&gt; &lt;Icon key={slug} size={40} radius={8} /&gt;)
   Metadados via <code>banks</code> e <code>getBank(slug | compe)</code>.</p>
 
   <footer>
+    <div class="autor">
+      <a href="https://henriquezolini.com/"><img src="data:image/jpeg;base64,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" alt="Henrique Zolini" /></a>
+      <div>
+        <b>Feito por Henrique Zolini</b>
+        <a href="https://henriquezolini.com/">henriquezolini.com</a> ·
+        <a href="https://github.com/henriquezolini">@henriquezolini</a>
+      </div>
+    </div>
     Contribuições são bem-vindas em
     <a href="https://github.com/henriquezolini/react-bancos">github.com/henriquezolini/react-bancos</a> —
     o guia está no CONTRIBUTING.md. Os logos são marcas registradas de seus respectivos titulares,
