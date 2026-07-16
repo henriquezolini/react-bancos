@@ -35,6 +35,13 @@ for (const bank of banks) {
   check(bank.compe === null || /^\d{3}$/.test(bank.compe), `${bank.slug}: compe inválido (${bank.compe})`);
 }
 
+// diretiva do projeto: todo banco tem slug ÚNICO em string lowercase ([a-z0-9]+)
+const slugs = banks.map((b) => b.slug);
+check(new Set(slugs).size === slugs.length, "slugs duplicados em banks");
+for (const s of slugs) {
+  check(typeof s === "string" && /^[a-z0-9]+$/.test(s), `slug fora do padrão lowercase: "${s}"`);
+}
+
 // ids/classes não podem colidir entre ícones renderizados na mesma página
 const all = banks.map((b) => renderToStaticMarkup(React.createElement(b.Icon))).join("");
 const ids = [...all.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);

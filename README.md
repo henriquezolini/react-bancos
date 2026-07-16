@@ -123,130 +123,166 @@ import nubankUrl from "react-bancos/icons/nubank.svg";
 
 Cobertura atual dos principais bancos e fintechs do país — contribuições para os que faltam são muito bem-vindas!
 
-| Banco | COMPE | Ícone | Componente |
-| --- | :-: | :-: | --- |
-| Banco do Brasil | 001 | ✅ | `<BancoDoBrasil />` |
-| Bradesco | 237 | ✅ | `<Bradesco />` |
-| Caixa Econômica Federal | 104 | ✅ | `<Caixa />` |
-| Itaú Unibanco | 341 | ✅ | `<Itau />` |
-| Santander | 033 | ✅ | `<Santander />` |
-| Nubank | 260 | ✅ | `<Nubank />` |
-| Banco Inter | 077 | ✅ | `<Inter />` |
-| C6 Bank | 336 | ✅ | `<C6Bank />` |
-| BTG Pactual | 208 | ✅ | `<BTGPactual />` |
-| XP | 348 | ✅ | `<XP />` |
-| Sicoob | 756 | ✅ | `<Sicoob />` |
-| Sicredi | 748 | ✅ | `<Sicredi />` |
-| Banrisul | 041 | ✅ | `<Banrisul />` |
-| Banco Safra | 422 | ✅ | `<Safra />` |
-| Banco BV | 655 | ✅ | `<BV />` |
-| Banco Pan | 623 | ✅ | `<Pan />` |
-| Banco BMG | 318 | ✅ | `<BMG />` |
-| Banco Original | 212 | ✅ | `<Original />` |
-| Neon | 735 | ✅ | `<Neon />` |
-| Cora | 403 | ✅ | `<Cora />` |
-| Mercado Pago | 323 | ✅ | `<MercadoPago />` |
-| PicPay | 380 | ✅ | `<PicPay />` |
-| PagBank | 290 | ✅ | `<PagBank />` |
-| Stone | 197 | ✅ | `<Stone />` |
-| Banco Daycoval | 707 | ✅ | `<Daycoval />` |
-| BRB — Banco de Brasília | 070 | ✅ | `<BRB />` |
-| Banco do Nordeste | 004 | ✅ | `<BancoDoNordeste />` |
-| Banco da Amazônia | 003 | ✅ | `<BancoDaAmazonia />` |
-| Banestes | 021 | ✅ | `<Banestes />` |
-| Banco Mercantil | 389 | ✅ | `<Mercantil />` |
-| Agibank | 121 | ✅ | `<Agibank />` |
-| Will Bank | — | ✅ | `<WillBank />` |
-| Banco Sofisa | 637 | ✅ | `<Sofisa />` |
-| Banco ABC Brasil | 246 | ✅ | `<ABCBrasil />` |
-| Citibank Brasil | 745 | ✅ | `<Citibank />` |
-| Banco Arbi | 213 | ✅ | `<Arbi />` |
-| Banese | 047 | ✅ | `<Banese />` |
-| Banco BNP Paribas Brasil | 752 | ✅ | `<BNPParibas />` |
-| Banco BS2 | 218 | ✅ | `<BS2 />` |
-| Cresol | 133 | ✅ | `<Cresol />` |
-| Deutsche Bank Brasil | 487 | ✅ | `<DeutscheBank />` |
-| Digio | 335 | ✅ | `<Digio />` |
-| Banco Fibra | 224 | ✅ | `<Fibra />` |
-| Banco Honda | — | ✅ | `<BancoHonda />` |
-| Banco Inbursa | 012 | ✅ | `<Inbursa />` |
-| Banco Industrial do Brasil | 604 | ✅ | `<IndustrialDoBrasil />` |
-| LetsBank | 630 | ✅ | `<LetsBank />` |
-| Banco Mizuho do Brasil | 370 | ✅ | `<Mizuho />` |
-| Banco Morgan Stanley | 066 | ✅ | `<MorganStanley />` |
-| Banco MUFG Brasil | 456 | ✅ | `<MUFG />` |
-| Omni Banco | 613 | ✅ | `<Omni />` |
-| Banco Paulista | 611 | ✅ | `<Paulista />` |
-| Banco Pine | 643 | ✅ | `<Pine />` |
-| Banco Rendimento | 633 | ✅ | `<Rendimento />` |
-| Banco Société Générale Brasil | 366 | ✅ | `<SocieteGenerale />` |
-| Banco Stellantis | — | ✅ | `<BancoStellantis />` |
-| Banco Sumitomo Mitsui Brasileiro | 464 | ✅ | `<SumitomoMitsui />` |
-| Banco Topázio | 082 | ✅ | `<Topazio />` |
-| Banco Toyota | 387 | ✅ | `<BancoToyota />` |
-| Unicred | 136 | ✅ | `<Unicred />` |
-| Banco Volkswagen | 393 | ✅ | `<BancoVolkswagen />` |
-| Efí Bank | 364 | ✅ | `<EfiBank />` |
-| Stark Bank | — | ✅ | `<StarkBank />` |
-| Zro Bank | — | ✅ | `<ZroBank />` |
-| Revolut | — | ✅ | `<Revolut />` |
-| Next | — | ✅ | `<Next />` |
-| Banco Digimais | 654 | ✅ | `<Digimais />` |
-| Banco Rabobank | 747 | ✅ | `<Rabobank />` |
-| Banco Ourinvest | 712 | ✅ | `<Ourinvest />` |
-| PayPal | — | ✅ | `<PayPal />` |
-| Wise | — | ✅ | `<Wise />` |
-| Skrill | — | ✅ | `<Skrill />` |
-| RecargaPay | — | ✅ | `<RecargaPay />` |
-| NG.CASH | — | ✅ | `<NGCash />` |
-| Asaas | 461 | ✅ | `<Asaas />` |
-| Celcoin | 509 | ✅ | `<Celcoin />` |
-| QI Tech | 329 | ✅ | `<QITech />` |
-| Bankly | 332 | ✅ | `<Bankly />` |
-| iugu | 401 | ✅ | `<Iugu />` |
-| CloudWalk | 542 | ✅ | `<CloudWalk />` |
-| InfinitePay | — | ✅ | `<InfinitePay />` |
-| Pagar.me | — | ✅ | `<PagarMe />` |
-| Creditas | 342 | ✅ | `<Creditas />` |
-| Warren Investimentos | 371 | ✅ | `<Warren />` |
-| Toro Investimentos | 352 | ✅ | `<Toro />` |
-| Pluggy | — | ✅ | `<Pluggy />` |
-| Klavi | — | ✅ | `<Klavi />` |
-| Banco Master | 243 | 🔜 | — |
-| Contabilizei Bank | — | 🔜 | — |
-| 99Pay | — | 🔜 | — |
-| AstroPay | — | 🔜 | — |
-| Ame Digital | — | 🔜 | — |
-| Nomad | — | 🔜 | — |
-| Superdigital | — | 🔜 | — |
-| Banco Modal | 746 | 🔜 | — |
-| Banco Alfa | 025 | 🔜 | — |
-| Crefisa | 069 | 🔜 | — |
-| Banco Fator | 265 | 🔜 | — |
-| Banco BOCOM BBM | 107 | 🔜 | — |
-| Banco Carrefour | 368 | 🔜 | — |
-| Banco GM | 390 | 🔜 | — |
-| Banco Mercedes-Benz | 381 | 🔜 | — |
-| Banco John Deere | — | 🔜 | — |
-| Banco CNH Industrial | — | 🔜 | — |
-| Banco J. Safra | 074 | 🔜 | — |
-| Banco Crédit Agricole Brasil | 222 | 🔜 | — |
-| Banco KEB Hana do Brasil | 757 | 🔜 | — |
-| Banco Genial | 125 | 🔜 | — |
-| Banco Andbank | 065 | 🔜 | — |
-| Banco Bari | — | 🔜 | — |
-| Banco Voiter | 653 | 🔜 | — |
-| Banco Tricury | 018 | 🔜 | — |
-| Banco Guanabara | 612 | 🔜 | — |
-| Banco Luso Brasileiro | 600 | 🔜 | — |
-| Banco Semear | 743 | 🔜 | — |
-| Banco CCB Brasil | 320 | 🔜 | — |
-| Banco Bexs | — | 🔜 | — |
-| Travelex Bank | 095 | 🔜 | — |
-| Banco Ribeirão Preto | 741 | 🔜 | — |
-| BDMG | — | 🔜 | — |
-| BRDE | — | 🔜 | — |
-| Banco BNI | — | 🔜 | — |
+| Banco | Slug | COMPE | Ícone | Componente |
+| --- | --- | :-: | :-: | --- |
+| Banco do Brasil | `bancodobrasil` | 001 | ✅ | `<BancoDoBrasil />` |
+| Bradesco | `bradesco` | 237 | ✅ | `<Bradesco />` |
+| Caixa Econômica Federal | `caixa` | 104 | ✅ | `<Caixa />` |
+| Itaú Unibanco | `itau` | 341 | ✅ | `<Itau />` |
+| Santander | `santander` | 033 | ✅ | `<Santander />` |
+| Nubank | `nubank` | 260 | ✅ | `<Nubank />` |
+| Banco Inter | `inter` | 077 | ✅ | `<Inter />` |
+| C6 Bank | `c6bank` | 336 | ✅ | `<C6Bank />` |
+| BTG Pactual | `btgpactual` | 208 | ✅ | `<BTGPactual />` |
+| XP | `xp` | 348 | ✅ | `<XP />` |
+| Sicoob | `sicoob` | 756 | ✅ | `<Sicoob />` |
+| Sicredi | `sicredi` | 748 | ✅ | `<Sicredi />` |
+| Banrisul | `banrisul` | 041 | ✅ | `<Banrisul />` |
+| Banco Safra | `safra` | 422 | ✅ | `<Safra />` |
+| Banco BV | `bv` | 655 | ✅ | `<BV />` |
+| Banco Pan | `pan` | 623 | ✅ | `<Pan />` |
+| Banco BMG | `bmg` | 318 | ✅ | `<BMG />` |
+| Banco Original | `original` | 212 | ✅ | `<Original />` |
+| Neon | `neon` | 735 | ✅ | `<Neon />` |
+| Cora | `cora` | 403 | ✅ | `<Cora />` |
+| Mercado Pago | `mercadopago` | 323 | ✅ | `<MercadoPago />` |
+| PicPay | `picpay` | 380 | ✅ | `<PicPay />` |
+| PagBank | `pagbank` | 290 | ✅ | `<PagBank />` |
+| Stone | `stone` | 197 | ✅ | `<Stone />` |
+| Banco Daycoval | `daycoval` | 707 | ✅ | `<Daycoval />` |
+| BRB — Banco de Brasília | `brb` | 070 | ✅ | `<BRB />` |
+| Banco do Nordeste | `bancodonordeste` | 004 | ✅ | `<BancoDoNordeste />` |
+| Banco da Amazônia | `bancodaamazonia` | 003 | ✅ | `<BancoDaAmazonia />` |
+| Banestes | `banestes` | 021 | ✅ | `<Banestes />` |
+| Banco Mercantil | `mercantil` | 389 | ✅ | `<Mercantil />` |
+| Agibank | `agibank` | 121 | ✅ | `<Agibank />` |
+| Will Bank | `willbank` | — | ✅ | `<WillBank />` |
+| Banco Sofisa | `sofisa` | 637 | ✅ | `<Sofisa />` |
+| Banco ABC Brasil | `abcbrasil` | 246 | ✅ | `<ABCBrasil />` |
+| Citibank Brasil | `citibank` | 745 | ✅ | `<Citibank />` |
+| Banco Arbi | `arbi` | 213 | ✅ | `<Arbi />` |
+| Banese | `banese` | 047 | ✅ | `<Banese />` |
+| Banco BNP Paribas Brasil | `bnpparibas` | 752 | ✅ | `<BNPParibas />` |
+| Banco BS2 | `bs2` | 218 | ✅ | `<BS2 />` |
+| Cresol | `cresol` | 133 | ✅ | `<Cresol />` |
+| Deutsche Bank Brasil | `deutsche` | 487 | ✅ | `<DeutscheBank />` |
+| Digio | `digio` | 335 | ✅ | `<Digio />` |
+| Banco Fibra | `fibra` | 224 | ✅ | `<Fibra />` |
+| Banco Honda | `honda` | — | ✅ | `<BancoHonda />` |
+| Banco Inbursa | `inbursa` | 012 | ✅ | `<Inbursa />` |
+| Banco Industrial do Brasil | `industrialdobrasil` | 604 | ✅ | `<IndustrialDoBrasil />` |
+| LetsBank | `letsbank` | 630 | ✅ | `<LetsBank />` |
+| Banco Mizuho do Brasil | `mizuho` | 370 | ✅ | `<Mizuho />` |
+| Banco Morgan Stanley | `morganstanley` | 066 | ✅ | `<MorganStanley />` |
+| Banco MUFG Brasil | `mufg` | 456 | ✅ | `<MUFG />` |
+| Omni Banco | `omni` | 613 | ✅ | `<Omni />` |
+| Banco Paulista | `paulista` | 611 | ✅ | `<Paulista />` |
+| Banco Pine | `pine` | 643 | ✅ | `<Pine />` |
+| Banco Rendimento | `rendimento` | 633 | ✅ | `<Rendimento />` |
+| Banco Société Générale Brasil | `socgen` | 366 | ✅ | `<SocieteGenerale />` |
+| Banco Stellantis | `stellantis` | — | ✅ | `<BancoStellantis />` |
+| Banco Sumitomo Mitsui Brasileiro | `sumitomo` | 464 | ✅ | `<SumitomoMitsui />` |
+| Banco Topázio | `topazio` | 082 | ✅ | `<Topazio />` |
+| Banco Toyota | `toyota` | 387 | ✅ | `<BancoToyota />` |
+| Unicred | `unicred` | 136 | ✅ | `<Unicred />` |
+| Banco Volkswagen | `volkswagen` | 393 | ✅ | `<BancoVolkswagen />` |
+| Efí Bank | `efibank` | 364 | ✅ | `<EfiBank />` |
+| Stark Bank | `starkbank` | — | ✅ | `<StarkBank />` |
+| Zro Bank | `zrobank` | — | ✅ | `<ZroBank />` |
+| Revolut | `revolut` | — | ✅ | `<Revolut />` |
+| Next | `next` | — | ✅ | `<Next />` |
+| Banco Digimais | `digimais` | 654 | ✅ | `<Digimais />` |
+| Banco Rabobank | `rabobank` | 747 | ✅ | `<Rabobank />` |
+| Banco Ourinvest | `ourinvest` | 712 | ✅ | `<Ourinvest />` |
+| PayPal | `paypal` | — | ✅ | `<PayPal />` |
+| Wise | `wise` | — | ✅ | `<Wise />` |
+| Skrill | `skrill` | — | ✅ | `<Skrill />` |
+| RecargaPay | `recargapay` | — | ✅ | `<RecargaPay />` |
+| NG.CASH | `ngcash` | — | ✅ | `<NGCash />` |
+| Asaas | `asaas` | 461 | ✅ | `<Asaas />` |
+| Celcoin | `celcoin` | 509 | ✅ | `<Celcoin />` |
+| QI Tech | `qitech` | 329 | ✅ | `<QITech />` |
+| Bankly | `bankly` | 332 | ✅ | `<Bankly />` |
+| iugu | `iugu` | 401 | ✅ | `<Iugu />` |
+| CloudWalk | `cloudwalk` | 542 | ✅ | `<CloudWalk />` |
+| InfinitePay | `infinitepay` | — | ✅ | `<InfinitePay />` |
+| Pagar.me | `pagarme` | — | ✅ | `<PagarMe />` |
+| Creditas | `creditas` | 342 | ✅ | `<Creditas />` |
+| Warren Investimentos | `warren` | 371 | ✅ | `<Warren />` |
+| Toro Investimentos | `toro` | 352 | ✅ | `<Toro />` |
+| Pluggy | `pluggy` | — | ✅ | `<Pluggy />` |
+| Klavi | `klavi` | — | ✅ | `<Klavi />` |
+| Ailos | `ailos` | 085 | ✅ | `<Ailos />` |
+| Almah Conta | `almah` | — | ✅ | `<Almah />` |
+| ARTTA | `artta` | — | ✅ | `<Artta />` |
+| Avenue | `avenue` | — | ✅ | `<Avenue />` |
+| Bank of America Merrill Lynch | `bankofamerica` | 755 | ✅ | `<BankOfAmerica />` |
+| Banpará | `banpara` | 037 | ✅ | `<Banpara />` |
+| BEES Bank | `beesbank` | — | ✅ | `<BeesBank />` |
+| BK Bank | `bkbank` | — | ✅ | `<BKBank />` |
+| BMP Money Plus | `bmp` | 274 | ✅ | `<BMP />` |
+| Capitual | `capitual` | — | ✅ | `<Capitual />` |
+| Conta Simples | `contasimples` | — | ✅ | `<ContaSimples />` |
+| Contbank | `contbank` | — | ✅ | `<Contbank />` |
+| CrediSIS | `credisis` | 097 | ✅ | `<CrediSIS />` |
+| Dock | `dock` | — | ✅ | `<Dock />` |
+| Grafeno | `grafeno` | — | ✅ | `<Grafeno />` |
+| iFood Pago | `ifoodpago` | — | ✅ | `<IfoodPago />` |
+| Linker | `linker` | — | ✅ | `<Linker />` |
+| MagaluPay | `magalupay` | 396 | ✅ | `<MagaluPay />` |
+| Modobank | `modobank` | — | ✅ | `<Modobank />` |
+| Múltiplo Bank | `multiplobank` | — | ✅ | `<MultiploBank />` |
+| Nomad | `nomad` | — | ✅ | `<Nomad />` |
+| Omie.Cash | `omiecash` | — | ✅ | `<OmieCash />` |
+| OrionPay | `orionpay` | — | ✅ | `<OrionPay />` |
+| PayCash | `paycash` | — | ✅ | `<PayCash />` |
+| PinBank | `pinbank` | — | ✅ | `<PinBank />` |
+| Quality Digital Bank | `qualitybank` | — | ✅ | `<QualityDigitalBank />` |
+| Rico | `rico` | — | ✅ | `<Rico />` |
+| Sisprime do Brasil | `sisprime` | 084 | ✅ | `<Sisprime />` |
+| Squid | `squid` | — | ✅ | `<Squid />` |
+| Stripe | `stripe` | — | ✅ | `<Stripe />` |
+| Sulcredi | `sulcredi` | — | ✅ | `<Sulcredi />` |
+| Ton | `ton` | — | ✅ | `<Ton />` |
+| Transfeera | `transfeera` | — | ✅ | `<Transfeera />` |
+| Tribanco | `tribanco` | 634 | ✅ | `<Tribanco />` |
+| Uniprime | `uniprime` | 099 | ✅ | `<Uniprime />` |
+| UzziPay | `uzzipay` | — | ✅ | `<UzziPay />` |
+| Zemo Bank | `zemobank` | — | ✅ | `<ZemoBank />` |
+| Banco Master | — | 243 | 🔜 | — |
+| Contabilizei Bank | — | — | 🔜 | — |
+| 99Pay | — | — | 🔜 | — |
+| AstroPay | — | — | 🔜 | — |
+| Ame Digital | — | — | 🔜 | — |
+| Superdigital | — | — | 🔜 | — |
+| Banco Modal | — | 746 | 🔜 | — |
+| Banco Alfa | — | 025 | 🔜 | — |
+| Crefisa | — | 069 | 🔜 | — |
+| Banco Fator | — | 265 | 🔜 | — |
+| Banco BOCOM BBM | — | 107 | 🔜 | — |
+| Banco Carrefour | — | 368 | 🔜 | — |
+| Banco GM | — | 390 | 🔜 | — |
+| Banco Mercedes-Benz | — | 381 | 🔜 | — |
+| Banco John Deere | — | — | 🔜 | — |
+| Banco CNH Industrial | — | — | 🔜 | — |
+| Banco J. Safra | — | 074 | 🔜 | — |
+| Banco Crédit Agricole Brasil | — | 222 | 🔜 | — |
+| Banco KEB Hana do Brasil | — | 757 | 🔜 | — |
+| Banco Genial | — | 125 | 🔜 | — |
+| Banco Andbank | — | 065 | 🔜 | — |
+| Banco Bari | — | — | 🔜 | — |
+| Banco Voiter | — | 653 | 🔜 | — |
+| Banco Tricury | — | 018 | 🔜 | — |
+| Banco Guanabara | — | 612 | 🔜 | — |
+| Banco Luso Brasileiro | — | 600 | 🔜 | — |
+| Banco Semear | — | 743 | 🔜 | — |
+| Banco CCB Brasil | — | 320 | 🔜 | — |
+| Banco Bexs | — | — | 🔜 | — |
+| Travelex Bank | — | 095 | 🔜 | — |
+| Banco Ribeirão Preto | — | 741 | 🔜 | — |
+| BDMG | — | — | 🔜 | — |
+| BRDE | — | — | 🔜 | — |
+| Banco BNI | — | — | 🔜 | — |
 
 Sentiu falta de um banco? [Abra uma issue](../../issues) ou envie um PR — o processo de criação está documentado em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

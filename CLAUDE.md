@@ -45,6 +45,14 @@ python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/s
    - Símbolo: maior dimensão do bounding box = **58** unidades (~21 de margem por lado).
    - Logo completa/wordmark: largura = **80** unidades (10 de margem lateral), centralizada.
 
+## Identidade: slug único
+
+**Todo banco/ícone tem um `slug` único em string lowercase** (`[a-z0-9]+`, sem espaços/acentos/
+hífens) — diretiva do dono do projeto. O slug é a chave de tudo: nome do arquivo `icons/<slug>.svg`,
+registro em `scripts/banks-data.mjs`, coluna Slug da tabela do README e busca via `getBankBySlug`.
+O smoke test (`npm test`) valida unicidade e formato; ao adicionar um banco, escolher um slug que
+não existe e usá-lo consistentemente nesses quatro lugares.
+
 ## Processo para adicionar um banco novo
 
 **Nunca desenhar o logo "de memória" ou estilizado — fidelidade ao logo original é requisito**
@@ -60,7 +68,14 @@ python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/s
      e baixar via `https://pt.wikipedia.org/wiki/Special:FilePath/<arquivo>` — achou Next, Modal,
      Digimais e Rabobank quando o Commons não tinha.
    - Coleções no GitHub (com `gh` autenticado: `gh api "search/code?q=<banco>+extension:svg"`);
-     a coleção `Tgentil/Bancos-em-SVG` cobre muitos bancos brasileiros.
+     a coleção `Tgentil/Bancos-em-SVG` cobre muitos bancos brasileiros (clonar raso é mais fácil
+     que baixar arquivo a arquivo — os paths têm espaços/acentos).
+   - `eduardolecdt/bancos-brasil`: `src/icones.js` tem SVGs monocromáticos fiéis aos ícones dos
+     apps (paths sem fill — aplicar a cor na composição) e `src/core.js` traz o par cor/fundo
+     oficial de cada banco (foi a fonte das cores de avenue/nomad/rico/stripe/ton).
+   - **Cor de fundo quando o vetor é branco**: amostrar o favicon/apple-touch-icon do site
+     oficial (`curl` + `convert fav.png txt:- | sort | uniq -c`) — confirmou tribanco (#00336d),
+     artta (#0a0b35), uzzipay (branco sobre #53a000) e banpará.
    - O próprio site do banco (`curl -A "Mozilla/5.0" <site> | grep -oE '"[^"]*\.svg[^"]*"'`) —
      foi assim que saiu o `will.svg` oficial; a cor da marca costuma estar no CSS do site.
    - iconape.com (achar a URL do asset no HTML da página do logo; a busca `?s=` não funciona).

@@ -64,8 +64,26 @@ def group(paths, fills, cx, cy, w=None, h=None, fit=None, extra="", box=None):
     print(f"   grupo: bbox=({bx:.1f},{by:.1f} {bw:.1f}x{bh:.1f}) escala={s:.4f} -> {s*bw:.1f}x{s*bh:.1f}")
     return f'  <g transform="translate({tx:.4f},{ty:.4f}) scale({s:.5f})">{inner}\n  </g>'
 
-def write_icon(name, bg, groups):
+def get_defs(fname, slug):
+    """Extrai <linearGradient>/<radialGradient> do fonte, com ids prefixados pelo
+    slug (evita colisão quando os ícones são inlinados juntos). Os fills que
+    referenciam os gradientes devem ser passados como url(#<slug>-<id>)."""
+    text = (SRC / fname).read_text()
+    frags = re.findall(r"<(?:linear|radial)Gradient.*?</(?:linear|radial)Gradient>", text, re.S)
+    out = "\n".join(frags)
+    for gid in set(re.findall(r'id="([^"]+)"', out)):
+        out = out.replace(f'id="{gid}"', f'id="{slug}-{gid}"')
+    return out
+
+def poly_d(points):
+    """Converte o atributo points de um <polygon> em um d de <path>."""
+    pts = points.replace(",", " ").split()
+    pairs = [f"{pts[i]},{pts[i + 1]}" for i in range(0, len(pts), 2)]
+    return "M " + " L ".join(pairs) + " Z"
+
+def write_icon(name, bg, groups, defs=""):
     body = "\n".join(groups)
+    defs_block = f"\n  <defs>\n{defs}\n  </defs>" if defs else ""
     svg = f'''<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    width="26.466524mm"
@@ -73,7 +91,7 @@ def write_icon(name, bg, groups):
    viewBox="0 0 {VB} {VB}"
    version="1.1"
    id="svg1"
-   xmlns="http://www.w3.org/2000/svg">
+   xmlns="http://www.w3.org/2000/svg">{defs_block}
   <rect
      style="fill:{bg};fill-opacity:1"
      id="rect1"
@@ -438,3 +456,183 @@ write_icon("rabobank", "#283a93", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extr
 # sobre o petróleo da marca
 print("ourinvest"); p = get_flat_paths("ourinvest_src.svg")
 write_icon("ourinvest", "#15252d", [group(p[0:2], ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# ---------------------------------------------------------------------------
+# Lote 5 (2026-07-16): fontes indicadas pelo dono — repos Tgentil/Bancos-em-SVG
+# e eduardolecdt/bancos-brasil (src/icones.js, monocromáticos: fill vem daqui).
+# Cor de fundo de logo branco verificada em site/favicon oficial da marca.
+# Ficaram de fora: DuePay (PNG embutido, não é vetor) e IP4Y (logo branco sem
+# cor de fundo verificável — site fora do ar).
+# ---------------------------------------------------------------------------
+
+# Avenue: símbolo "a." branco sobre o verde-escuro oficial (cores do core.js da fonte)
+print("avenue"); p = get_paths("avenue_src.svg")
+write_icon("avenue", "#002820", [group(p, ["#ffffff"] * len(p), C, C, fit=FIT_SIMBOLO)])
+
+# Nomad: monograma "N" preto sobre o amarelo oficial
+print("nomad"); p = get_paths("nomad_src.svg")
+write_icon("nomad", "#ffce04", [group(p, ["#000000"] * len(p), C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Rico: símbolo (laço ∞) laranja oficial sobre o azul-marinho oficial
+print("rico"); p = get_paths("rico_src.svg")
+write_icon("rico", "#010042", [group(p, ["#ff5200"], C, C, fit=FIT_SIMBOLO, extra="evenodd")])
+
+# Stripe: wordmark branco sobre o roxo oficial
+print("stripe"); p = get_paths("stripe_src.svg")
+write_icon("stripe", "#635bff", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Ton: marca do app ("ton" + sorriso) branca sobre o verde oficial
+print("ton"); p = get_paths("ton_src.svg")
+write_icon("ton", "#0dea4a", [group(p, ["#ffffff"] * len(p), C, C, fit=FIT_SIMBOLO)])
+
+# Ailos: símbolo oficial (anéis em gradiente + pinheiros) nas cores originais sobre branco
+print("ailos"); p = get_paths("ailos_src.svg")
+AILOS_FILLS = {"cls-1": "#165c7d", "cls-2": "url(#ailos-linear-gradient)",
+               "cls-3": "url(#ailos-linear-gradient-2)", "cls-4": "#886b25",
+               "cls-5": "url(#ailos-linear-gradient-3)", "cls-6": "#007d8a", "cls-7": "#007041"}
+write_icon("ailos", "#ffffff", [group(p, [AILOS_FILLS[q["cls"]] for q in p], C, C, fit=FIT_SIMBOLO)],
+           defs=get_defs("ailos_src.svg", "ailos"))
+
+# Almah: símbolo branco sobre o azul-escuro oficial (#1c1444, da variante azul da marca)
+print("almah"); p = get_flat_paths("almah_src.svg")
+write_icon("almah", "#1c1444", [group(p, ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# ARTTA: símbolo (burst) no navy do favicon oficial sobre branco
+print("artta"); p = get_flat_paths("artta_src.svg")
+write_icon("artta", "#ffffff", [group(p, ["#0a0b35"] * len(p), C, C, fit=FIT_SIMBOLO)])
+
+# BK Bank: monograma "bk" no azul-escuro original sobre branco
+print("bkbank"); p = get_flat_paths("bkbank_src.svg")
+write_icon("bkbank", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# BMP (Money Plus): wordmark branco com as barras em gradiente sobre o grafite do site oficial
+print("bmp")
+_raw = (SRC / "bmp_src.svg").read_text()
+_letters = re.search(r'<path\s+fill="#ffffff"\s+d="([^"]+)"', _raw).group(1)
+_polys = re.findall(r'<polygon\s+id="SVGID_\d_"\s+points="([^"]+)"', _raw)
+p = [{"d": _letters, "fill": "#ffffff", "cls": None},
+     {"d": poly_d(_polys[0]), "fill": "url(#bmp-SVGID_3_)", "cls": None},
+     {"d": poly_d(_polys[1]), "fill": "url(#bmp-SVGID_6_)", "cls": None}]
+write_icon("bmp", "#0d0d12", [group(p, None, C, C, w=LARG_LOGO)],
+           defs=get_defs("bmp_src.svg", "bmp"))
+
+# Tribanco: "t" oficial (bandeira em gradiente verde->ciano + cauda branca) sobre o
+# navy #00336d do ícone oficial (favicon do site)
+print("tribanco")
+_raw = (SRC / "tribanco_src.svg").read_text()
+_tail = re.search(r'<path[^>]*\sd="([^"]+)"', _raw).group(1)
+_flag = re.search(r'<polygon\s+id="SVGID_3_"\s+points="([^"]+)"', _raw).group(1)
+p = [{"d": _tail, "fill": "#ffffff", "cls": None},
+     {"d": poly_d(_flag), "fill": "url(#tribanco-SVGID_5_)", "cls": None}]
+write_icon("tribanco", "#00336d", [group(p, None, C, C, fit=FIT_SIMBOLO)],
+           defs=get_defs("tribanco_src.svg", "tribanco"))
+
+# Banpará: símbolo branco sobre o vermelho oficial (reproduz o tile banpara-logo-fundo)
+print("banpara"); p = get_flat_paths("banpara_fundo_src.svg")
+write_icon("banpara", "#ea1c24", [group(p[1:2], ["#ffffff"], C, C, fit=FIT_SIMBOLO)])
+
+# Bank of America: só a bandeira (símbolo) nas cores originais sobre branco
+print("bankofamerica"); p = get_flat_paths("bankofamerica_src.svg")
+write_icon("bankofamerica", "#ffffff", [group(p[0:2], None, C, C, fit=FIT_SIMBOLO)])
+
+# BEES Bank: wordmark preto oficial sobre branco
+print("beesbank"); p = get_flat_paths("beesbank_src.svg")
+write_icon("beesbank", "#ffffff", [group(p, ["#000000"] * len(p), C, C, w=LARG_LOGO)])
+
+# Capitual: símbolo "C" (azul + roxo, miolo branco) nas cores originais sobre branco
+print("capitual"); p = get_flat_paths("capitual_src.svg")
+write_icon("capitual", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Conta Simples: só o símbolo (check verde) nas cores originais sobre branco
+print("contasimples"); p = get_flat_paths("contasimples_src.svg")
+write_icon("contasimples", "#ffffff", [group(p[0:3], ["#2dcd69", "#ffffff", "#2dcd69"], C, C, fit=FIT_SIMBOLO)])
+
+# Contbank: símbolo no azul-escuro original sobre branco
+print("contbank"); p = get_flat_paths("contbank_src.svg")
+write_icon("contbank", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# CrediSIS: símbolo (arcos verdes + triângulo amarelo) nas cores originais sobre branco
+print("credisis"); p = get_flat_paths("credisis_src.svg")
+write_icon("credisis", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Dock: símbolo pixelado ciano original sobre branco
+print("dock"); p = get_flat_paths("dock_src.svg")
+write_icon("dock", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Grafeno: símbolo multicolorido original sobre branco
+print("grafeno"); p = get_flat_paths("grafeno_src.svg")
+write_icon("grafeno", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# iFood Pago: wordmark branco sobre o vermelho oficial do iFood
+print("ifoodpago"); p = get_flat_paths("ifoodpago_src.svg")
+write_icon("ifoodpago", "#ea1d2c", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Linker: símbolo "L" coral original sobre branco
+print("linker"); p = get_flat_paths("linker_src.svg")
+write_icon("linker", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# MagaluPay: wordmark oficial (azul Magalu + cinza) sobre branco
+print("magalupay"); p = get_flat_paths("magalupay_src.svg")
+write_icon("magalupay", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])
+
+# Modobank: símbolo azul original sobre branco
+print("modobank"); p = get_flat_paths("modobank_src.svg")
+write_icon("modobank", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Múltiplo Bank: "M" em gradiente radial + sombras originais sobre branco.
+# Os 3 primeiros paths do fonte estão sob um clipPath vazio (invisíveis) — fora.
+print("multiplobank"); p = get_paths("multiplobank_src.svg")[3:]
+fills = ["url(#multiplobank-Gradiente_sem_nome)", "#001f1f", "#001f1f", "#001f1f"]
+write_icon("multiplobank", "#ffffff", [group(p, fills, C, C, fit=FIT_SIMBOLO, extra="evenodd")],
+           defs=get_defs("multiplobank_src.svg", "multiplobank"))
+
+# Omie.Cash: símbolo ciano original sobre branco
+print("omiecash"); p = get_flat_paths("omiecash_src.svg")
+write_icon("omiecash", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# OrionPay: símbolo (gradientes laranja originais) sobre branco
+print("orionpay"); p = get_paths("orionpay_src.svg")
+fills = [f"url(#orionpay-paint{i}_linear_12_93)" for i in range(4)]
+write_icon("orionpay", "#ffffff", [group(p, fills, C, C, fit=FIT_SIMBOLO)],
+           defs=get_defs("orionpay_src.svg", "orionpay"))
+
+# PayCash: wordmark branco sobre o navy oficial (site/favicon)
+print("paycash"); p = get_flat_paths("paycash_src.svg")
+write_icon("paycash", "#1c3256", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# PinBank: wordmark oficial (laranja + ciano) sobre branco
+print("pinbank"); p = get_flat_paths("pinbank_src.svg")
+write_icon("pinbank", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])
+
+# Quality Digital Bank: símbolo (mão cinza + roxo) nas cores originais sobre branco
+print("qualitybank"); p = get_flat_paths("qualitybank_src.svg")
+write_icon("qualitybank", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Sisprime do Brasil: lockup oficial (azuis originais) sobre branco
+print("sisprime"); p = get_flat_paths("sisprime_src.svg")
+write_icon("sisprime", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])
+
+# Squid: wordmark rosa original sobre branco
+print("squid"); p = get_flat_paths("squid_src.svg")
+write_icon("squid", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])
+
+# Sulcredi: símbolo (sol laranja + pinheiros verdes) nas cores originais sobre branco
+print("sulcredi"); p = get_flat_paths("sulcredi_src.svg")
+write_icon("sulcredi", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Transfeera: símbolo (ponte teal) original sobre branco
+print("transfeera"); p = get_flat_paths("transfeera_src.svg")
+write_icon("transfeera", "#ffffff", [group(p, None, C, C, fit=FIT_SIMBOLO)])
+
+# Uniprime: símbolo oficial sobre branco (descarta shapes-resíduo em coordenadas negativas)
+print("uniprime"); p = get_flat_paths("uniprime_src.svg")
+sym = [q for q in p if _bb(q)[0] > -100]
+write_icon("uniprime", "#ffffff", [group(sym, None, C, C, fit=FIT_SIMBOLO)])
+
+# UzziPay: lockup todo branco sobre o verde oficial (ícone do app: branco sobre #53a000)
+print("uzzipay"); p = get_flat_paths("uzzipay_src.svg")
+write_icon("uzzipay", "#53a000", [group(p, ["#ffffff"] * len(p), C, C, w=LARG_LOGO)])
+
+# Zemo Bank: "Z" branco com detalhes azuis sobre o navy do site oficial
+print("zemobank"); p = get_flat_paths("zemobank_src.svg")
+write_icon("zemobank", "#001041", [group(p, None, C, C, fit=FIT_SIMBOLO)])
