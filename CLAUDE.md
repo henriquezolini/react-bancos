@@ -55,6 +55,10 @@ python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/s
      `https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srsearch=<banco>+logo+svg`
      e baixar via `https://commons.wikimedia.org/wiki/Special:FilePath/<Nome do arquivo>`.
    - simple-icons: `https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/<slug>.svg`.
+   - **Wikipédia PT** (arquivos locais que NÃO estão no Commons): buscar em
+     `https://pt.wikipedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srsearch=<banco>+logo`
+     e baixar via `https://pt.wikipedia.org/wiki/Special:FilePath/<arquivo>` — achou Next, Modal,
+     Digimais e Rabobank quando o Commons não tinha.
    - Coleções no GitHub (com `gh` autenticado: `gh api "search/code?q=<banco>+extension:svg"`);
      a coleção `Tgentil/Bancos-em-SVG` cobre muitos bancos brasileiros.
    - O próprio site do banco (`curl -A "Mozilla/5.0" <site> | grep -oE '"[^"]*\.svg[^"]*"'`) —
