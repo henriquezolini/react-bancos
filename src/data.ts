@@ -91,6 +91,7 @@ export const banksData: BankData[] = [
   { slug: "original", name: "Banco Original", compe: "212", color: "#18ad47" },
   { slug: "orionpay", name: "OrionPay", compe: null, color: "#ffffff" },
   { slug: "ourinvest", name: "Banco Ourinvest", compe: "712", color: "#15252d" },
+  { slug: "outros", name: "Outros", compe: null, color: "#9aa0a6" },
   { slug: "pagarme", name: "Pagar.me", compe: null, color: "#00af55" },
   { slug: "pagbank", name: "PagBank", compe: "290", color: "#1bb99a" },
   { slug: "pan", name: "Banco Pan", compe: "623", color: "#363636" },

@@ -532,6 +532,13 @@
     "icon": "https://henriquezolini.github.io/react-bancos/icons/ourinvest.svg"
   },
   {
+    "slug": "outros",
+    "name": "Outros",
+    "compe": null,
+    "color": "#9aa0a6",
+    "icon": "https://henriquezolini.github.io/react-bancos/icons/outros.svg"
+  },
+  {
     "slug": "pagarme",
     "name": "Pagar.me",
     "compe": null,

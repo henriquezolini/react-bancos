@@ -81,6 +81,7 @@ export const BANKS = [
   { slug: "original", component: "Original", name: "Banco Original", compe: "212" },
   { slug: "orionpay", component: "OrionPay", name: "OrionPay", compe: null },
   { slug: "ourinvest", component: "Ourinvest", name: "Banco Ourinvest", compe: "712" },
+  { slug: "outros", component: "Outros", name: "Outros", compe: null },
   { slug: "pagarme", component: "PagarMe", name: "Pagar.me", compe: null },
   { slug: "pagbank", component: "PagBank", name: "PagBank", compe: "290" },
   { slug: "pan", component: "Pan", name: "Banco Pan", compe: "623" },

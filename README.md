@@ -272,6 +272,7 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Uniprime | `uniprime` | 099 | ✅ | `<Uniprime />` |
 | UzziPay | `uzzipay` | — | ✅ | `<UzziPay />` |
 | Zemo Bank | `zemobank` | — | ✅ | `<ZemoBank />` |
+| Outros | `outros` | — | ✅ | `<Outros />` |
 | Banco Master | — | 243 | 🔜 | — |
 | Contabilizei Bank | — | — | 🔜 | — |
 | 99Pay | — | — | 🔜 | — |

@@ -81,6 +81,7 @@ export { Omni } from "./icons/Omni";
 export { Original } from "./icons/Original";
 export { OrionPay } from "./icons/OrionPay";
 export { Ourinvest } from "./icons/Ourinvest";
+export { Outros } from "./icons/Outros";
 export { PagarMe } from "./icons/PagarMe";
 export { PagBank } from "./icons/PagBank";
 export { Pan } from "./icons/Pan";

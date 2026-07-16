@@ -77,6 +77,7 @@ import { Omni } from "./icons/Omni";
 import { Original } from "./icons/Original";
 import { OrionPay } from "./icons/OrionPay";
 import { Ourinvest } from "./icons/Ourinvest";
+import { Outros } from "./icons/Outros";
 import { PagarMe } from "./icons/PagarMe";
 import { PagBank } from "./icons/PagBank";
 import { Pan } from "./icons/Pan";
@@ -208,6 +209,7 @@ const ICONS: Record<string, BankIconComponent> = {
   "original": Original,
   "orionpay": OrionPay,
   "ourinvest": Ourinvest,
+  "outros": Outros,
   "pagarme": PagarMe,
   "pagbank": PagBank,
   "pan": Pan,
