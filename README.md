@@ -50,17 +50,20 @@ import { Nubank, Itau, BancoDoBrasil } from "react-bancos";
 <BancoDoBrasil size="3rem" title="Conta corrente BB" />
 ```
 
-Veio só o **código do banco** da sua API? Busque pelo COMPE, nome ou slug:
+Veio só o **código do banco** da sua API? Busque pelo COMPE, nome ou slug e renderize o ícone:
 
 ```tsx
-import { banks, getBankByCompe } from "react-bancos";
+import { banks, getBankByCompe, getBankByName } from "react-bancos";
 
-const dados = getBankByCompe(260); // aceita 260, "260" ou "77" (completa os zeros)
-// → { slug: "nubank", name: "Nubank", compe: "260", color: "#820ad1" }
+getBankByCompe(260);   // aceita 260, "260" ou "77" (completa os zeros)
+getBankByName("itau"); // ignora acentos/caixa → { slug: "itau", name: "Itaú Unibanco", ... }
 
-const banco = banks.find((b) => b.slug === dados?.slug);
+const banco = banks.find((b) => b.compe === "260");
 {banco && <banco.Icon size={24} radius={6} title={banco.name} />}
 ```
+
+> `getBank(slug | compe)` continua existindo, mas está **deprecated** — prefira as buscas
+> específicas acima (que também existem em [`react-bancos/data`](#em-node-apis-e-backends-sem-react), sem React).
 
 Listar todos (ex.: seletor de instituição):
 
@@ -187,6 +190,10 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Stark Bank | — | ✅ | `<StarkBank />` |
 | Zro Bank | — | ✅ | `<ZroBank />` |
 | Revolut | — | ✅ | `<Revolut />` |
+| Next | — | ✅ | `<Next />` |
+| Banco Digimais | 654 | ✅ | `<Digimais />` |
+| Banco Rabobank | 747 | ✅ | `<Rabobank />` |
+| Banco Ourinvest | 712 | ✅ | `<Ourinvest />` |
 | PayPal | — | ✅ | `<PayPal />` |
 | Wise | — | ✅ | `<Wise />` |
 | Skrill | — | ✅ | `<Skrill />` |
@@ -217,7 +224,6 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Crefisa | 069 | 🔜 | — |
 | Banco Fator | 265 | 🔜 | — |
 | Banco BOCOM BBM | 107 | 🔜 | — |
-| Next | — | 🔜 | — |
 | Banco Carrefour | 368 | 🔜 | — |
 | Banco GM | 390 | 🔜 | — |
 | Banco Mercedes-Benz | 381 | 🔜 | — |
@@ -226,11 +232,9 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Banco J. Safra | 074 | 🔜 | — |
 | Banco Crédit Agricole Brasil | 222 | 🔜 | — |
 | Banco KEB Hana do Brasil | 757 | 🔜 | — |
-| Banco Rabobank | 747 | 🔜 | — |
 | Banco Genial | 125 | 🔜 | — |
 | Banco Andbank | 065 | 🔜 | — |
 | Banco Bari | — | 🔜 | — |
-| Banco Digimais | 654 | 🔜 | — |
 | Banco Voiter | 653 | 🔜 | — |
 | Banco Tricury | 018 | 🔜 | — |
 | Banco Guanabara | 612 | 🔜 | — |
@@ -239,12 +243,10 @@ Cobertura atual dos principais bancos e fintechs do país — contribuições pa
 | Banco CCB Brasil | 320 | 🔜 | — |
 | Banco Bexs | — | 🔜 | — |
 | Travelex Bank | 095 | 🔜 | — |
-| Banco Ourinvest | 712 | 🔜 | — |
 | Banco Ribeirão Preto | 741 | 🔜 | — |
 | BDMG | — | 🔜 | — |
 | BRDE | — | 🔜 | — |
 | Banco BNI | — | 🔜 | — |
-| Banco Acesso | — | 🔜 | — |
 
 Sentiu falta de um banco? [Abra uma issue](../../issues) ou envie um PR — o processo de criação está documentado em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

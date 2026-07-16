@@ -29,6 +29,7 @@ import { Creditas } from "./icons/Creditas";
 import { Cresol } from "./icons/Cresol";
 import { Daycoval } from "./icons/Daycoval";
 import { DeutscheBank } from "./icons/DeutscheBank";
+import { Digimais } from "./icons/Digimais";
 import { Digio } from "./icons/Digio";
 import { EfiBank } from "./icons/EfiBank";
 import { Fibra } from "./icons/Fibra";
@@ -47,10 +48,12 @@ import { Mizuho } from "./icons/Mizuho";
 import { MorganStanley } from "./icons/MorganStanley";
 import { MUFG } from "./icons/MUFG";
 import { Neon } from "./icons/Neon";
+import { Next } from "./icons/Next";
 import { NGCash } from "./icons/NGCash";
 import { Nubank } from "./icons/Nubank";
 import { Omni } from "./icons/Omni";
 import { Original } from "./icons/Original";
+import { Ourinvest } from "./icons/Ourinvest";
 import { PagarMe } from "./icons/PagarMe";
 import { PagBank } from "./icons/PagBank";
 import { Pan } from "./icons/Pan";
@@ -60,6 +63,7 @@ import { PicPay } from "./icons/PicPay";
 import { Pine } from "./icons/Pine";
 import { Pluggy } from "./icons/Pluggy";
 import { QITech } from "./icons/QITech";
+import { Rabobank } from "./icons/Rabobank";
 import { RecargaPay } from "./icons/RecargaPay";
 import { Rendimento } from "./icons/Rendimento";
 import { Revolut } from "./icons/Revolut";
@@ -119,6 +123,7 @@ const ICONS: Record<string, BankIconComponent> = {
   "cresol": Cresol,
   "daycoval": Daycoval,
   "deutsche": DeutscheBank,
+  "digimais": Digimais,
   "digio": Digio,
   "efibank": EfiBank,
   "fibra": Fibra,
@@ -137,10 +142,12 @@ const ICONS: Record<string, BankIconComponent> = {
   "morganstanley": MorganStanley,
   "mufg": MUFG,
   "neon": Neon,
+  "next": Next,
   "ngcash": NGCash,
   "nubank": Nubank,
   "omni": Omni,
   "original": Original,
+  "ourinvest": Ourinvest,
   "pagarme": PagarMe,
   "pagbank": PagBank,
   "pan": Pan,
@@ -150,6 +157,7 @@ const ICONS: Record<string, BankIconComponent> = {
   "pine": Pine,
   "pluggy": Pluggy,
   "qitech": QITech,
+  "rabobank": Rabobank,
   "recargapay": RecargaPay,
   "rendimento": Rendimento,
   "revolut": Revolut,

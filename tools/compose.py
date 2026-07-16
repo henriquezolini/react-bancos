@@ -415,3 +415,26 @@ write_icon("klavi", "#ffffff", [group(p[0:1], None, C, C, fit=FIT_SIMBOLO, extra
 # Skrill: wordmark preto oficial sobre branco
 print("skrill"); p = get_flat_paths("skrill_src.svg")
 write_icon("skrill", "#ffffff", [group(p, None, C, C, w=LARG_LOGO)])
+
+# ---------------------------------------------------------------------------
+# Lote 4 (2026-07-15): pendentes achados em fontes ampliadas (Wikipédia PT,
+# sites oficiais). modal2/next/digimais/rabobank vêm da pt.wikipedia.
+# ---------------------------------------------------------------------------
+
+# Next (Bradesco): símbolo (traços + traço verde-neon) sobre o petróleo da marca;
+# o texto "next" (shape 0) fica fora
+print("next"); p = get_flat_paths("next_src.svg")
+write_icon("next", "#1e3c3c", [group(p[1:5], ["#ffffff", "#ffffff", "#ffffff", "#00ff5f"], C, C, fit=FIT_SIMBOLO)])
+
+# Banco Digimais: wordmark branco + marca vermelha mantida sobre o azul-marinho oficial
+print("digimais"); p = get_flat_paths("digimais_src.svg")
+write_icon("digimais", "#171b3d", [group(p, ["#e62a36", "#ffffff"], C, C, w=LARG_LOGO)])
+
+# Rabobank: wordmark branco sobre o azul oficial (símbolo não disponível em vetor)
+print("rabobank"); p = get_flat_paths("rabobank_src.svg")
+write_icon("rabobank", "#283a93", [group(p, ["#ffffff"], C, C, w=LARG_LOGO, extra="evenodd")])
+
+# Banco Ourinvest: símbolo (shapes 0-1 do brand.svg do site oficial) branco
+# sobre o petróleo da marca
+print("ourinvest"); p = get_flat_paths("ourinvest_src.svg")
+write_icon("ourinvest", "#15252d", [group(p[0:2], ["#ffffff", "#ffffff"], C, C, fit=FIT_SIMBOLO)])

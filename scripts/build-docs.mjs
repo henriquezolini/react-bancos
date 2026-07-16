@@ -228,7 +228,8 @@ searchBanks(<span class="s">"banco"</span>);           <span class="c">// busca 
     </tbody>
   </table>
   <p class="hint">Qualquer outra prop de <code>&lt;svg&gt;</code> (className, onClick, …) é repassada.
-  Metadados via <code>banks</code> e <code>getBank(slug | compe)</code>.</p>
+  Metadados via <code>banksData</code>, <code>getBankByCompe</code>, <code>getBankByName</code>,
+  <code>getBankBySlug</code> e <code>searchBanks</code> — também em <code>react-bancos/data</code>.</p>
 
   <footer>
     <div class="autor">
