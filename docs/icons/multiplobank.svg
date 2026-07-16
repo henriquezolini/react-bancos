@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="26.466524mm"
+   height="26.466524mm"
+   viewBox="0 0 100.03096 100.03096"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg">
+  <defs>
+<radialGradient id="multiplobank-Gradiente_sem_nome" data-name="Gradiente sem nome" cx="289.19" cy="1751.18" fx="289.19" fy="1751.18" r="42.36" gradientTransform="translate(34999.04 69203.25) rotate(-36.06) scale(42.11 -42.29)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="teal"/>
+      <stop offset="1" stop-color="#00c4c4"/>
+    </radialGradient>
+  </defs>
+  <rect
+     style="fill:#ffffff;fill-opacity:1"
+     id="rect1"
+     width="100.03096"
+     height="100.03096"
+     x="0"
+     y="0" />
+  <g transform="translate(21.0155,21.0155) scale(0.02320)">
+    <path d="M0,1572.54l333.18,294.4,349.19,293.71v-955.37l317.01,661.2h501.24l317.01-661.22v955.39l349.19-293.71,333.17-294.4V339.34h-851.49l-398.51,586.32-398.52-586.32H0v1233.2Z" style="fill:url(#multiplobank-Gradiente_sem_nome)" fill-rule="evenodd" />
+    <path d="M682.39,1557.32v-252.77l-352.63-681.18,352.63,933.94Z" style="fill:#001f1f" fill-rule="evenodd" />
+    <path d="M1817.62,1554.91v-250.42l353.99-672.46-353.99,922.89Z" style="fill:#001f1f" fill-rule="evenodd" />
+    <path d="M1308.47,938.84l-58.47,86.04,338.41,656.59-279.94-742.63Z" style="fill:#001f1f" fill-rule="evenodd" />
+  </g>
+</svg>

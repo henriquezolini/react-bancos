@@ -1,24 +1,42 @@
 /**
  * Gera docs/index.html — showcase interativo com todos os ícones inline.
+ * Também publica os SVGs crus em docs/icons/ e um índice em docs/api/bancos.json,
+ * para servir de API estática de ícones via GitHub Pages (URL por slug).
  * Uso: node scripts/build-docs.mjs
  */
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BANKS } from "./banks-data.mjs";
 import { sanitizeSvg, assertNoCollisions } from "./svg-utils.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const VERSION = JSON.parse(readFileSync(join(root, "package.json"), "utf8")).version;
+const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+const VERSION = pkg.version;
+const BASE_URL = pkg.homepage.replace(/\/$/, "");
 const AVATAR = `data:image/jpeg;base64,${readFileSync(join(root, "assets", "autor.png")).toString("base64")}`;
 mkdirSync(join(root, "docs"), { recursive: true });
+mkdirSync(join(root, "docs", "icons"), { recursive: true });
+mkdirSync(join(root, "docs", "api"), { recursive: true });
 
 const data = BANKS.map((b) => {
   const raw = readFileSync(join(root, "icons", `${b.slug}.svg`), "utf8");
   const { viewBox, inner, background } = sanitizeSvg(raw, b.slug);
+  copyFileSync(join(root, "icons", `${b.slug}.svg`), join(root, "docs", "icons", `${b.slug}.svg`));
   return { ...b, viewBox, inner, color: b.color ?? background };
 });
 assertNoCollisions(data);
+
+writeFileSync(
+  join(root, "docs", "api", "bancos.json"),
+  JSON.stringify(
+    data.map(({ slug, name, compe, color }) => ({
+      slug, name, compe, color, icon: `${BASE_URL}/icons/${slug}.svg`,
+    })),
+    null,
+    2
+  )
+);
 
 const payload = JSON.stringify(
   data.map(({ slug, component, name, compe, color, viewBox, inner }) => ({
@@ -124,6 +142,8 @@ input[type="range"] { accent-color: var(--accent); width: 100px; }
   font: .66rem/1.6 var(--mono); color: var(--muted);
   border: 1px solid var(--line); border-radius: 5px; padding: 0 .4em; white-space: nowrap;
 }
+.badge[data-url] { cursor: pointer; }
+.badge[data-url]:hover { color: var(--accent); border-color: var(--accent); }
 .empty { color: var(--muted); font-size: .875rem; grid-column: 1 / -1; padding: 2rem 0; }
 .hint { color: var(--muted); font-size: .8rem; margin: .9rem 0 0; }
 h2 { font-size: 1rem; font-weight: 600; color: var(--ink); letter-spacing: -.01em;
@@ -192,7 +212,21 @@ footer a:hover { text-decoration: underline; }
   </div>
 
   <div class="grid" id="grid"></div>
-  <p class="hint">Clique em um card para copiar o import do componente.</p>
+  <p class="hint">Clique em um card para copiar o import do componente
+  <span class="sep">·</span> clique no badge <code>URL</code> para copiar o link direto do SVG.</p>
+
+  <h2>API de ícones por URL</h2>
+  <p class="tag">Sem instalar nada: cada ícone é servido como SVG estático neste GitHub Pages,
+  endereçado pelo <code>slug</code> do banco — funciona direto em <code>&lt;img&gt;</code>,
+  CSS (<code>background-image</code>) ou apps mobile/backends que só precisam de uma URL.</p>
+  <pre><span class="c">// padrão: https://henriquezolini.github.io/react-bancos/icons/&lt;slug&gt;.svg</span>
+&lt;img src=<span class="s">"${BASE_URL}/icons/nubank.svg"</span> width=<span class="s">"48"</span> height=<span class="s">"48"</span> /&gt;
+
+<span class="c">// índice com metadados de todos os bancos (slug, nome, COMPE, cor, url do ícone)</span>
+<span class="s">${BASE_URL}/api/bancos.json</span></pre>
+  <p class="hint">A lista de slugs válidos está na tabela do
+  <a href="https://github.com/henriquezolini/react-bancos#bancos-suportados">README</a>
+  ou no próprio <code>bancos.json</code> acima.</p>
 
   <h2>Uso</h2>
   <pre><span class="k">import</span> { Nubank, banks, getBankByCompe } <span class="k">from</span> <span class="s">"react-bancos"</span>;
@@ -249,6 +283,7 @@ searchBanks(<span class="s">"banco"</span>);           <span class="c">// busca 
 <div id="toast" role="status">Copiado!</div>
 <script>
 const BANKS = ${payload};
+const ICON_BASE = "${BASE_URL}/icons/";
 const grid = document.getElementById("grid");
 const q = document.getElementById("q");
 const size = document.getElementById("size");
@@ -275,11 +310,18 @@ function render() {
     '<button class="card" data-c="' + b.component + '" title="Copiar import">' +
     svgOf(b, s, r) + "<b>" + b.name + '</b><span class="meta"><span class="badge">&lt;' +
     b.component + ' /&gt;</span>' + (b.compe ? '<span class="badge">' + b.compe + "</span>" : "") +
+    '<span class="badge" data-url="' + b.slug + '" title="Copiar URL do SVG">URL</span>' +
     "</span></button>").join("") ||
     '<p class="empty">Nenhum banco encontrado para "' + q.value.trim() +
     '" — contribuições são bem-vindas no GitHub.</p>';
 }
 grid.addEventListener("click", (e) => {
+  const urlBadge = e.target.closest("[data-url]");
+  if (urlBadge) {
+    e.stopPropagation();
+    copy(ICON_BASE + urlBadge.dataset.url + ".svg");
+    return;
+  }
   const card = e.target.closest(".card");
   if (!card) return;
   copy('import { ' + card.dataset.c + ' } from "react-bancos";');

@@ -19,6 +19,8 @@ scripts/smoke-test.mjs  SSR de todos os ícones + validação de metadados/colis
 tools/compose.py     pipeline python que CRIA icons/<slug>.svg a partir de vetores oficiais
 tools/sources/       vetores oficiais baixados (<slug>_src.svg)
 docs/index.html      showcase (GitHub Pages); docs/.fragment.html = versão p/ Artifact
+docs/icons/, docs/api/  GERADOS por build-docs.mjs: API estática de ícones via URL
+                     (docs/icons/<slug>.svg + índice docs/api/bancos.json) — nunca editar
 assets/              materiais fora do pacote (ex.: logo-bancos.svg, folha antiga)
 ```
 
@@ -26,7 +28,7 @@ assets/              materiais fora do pacote (ex.: logo-bancos.svg, folha antig
 
 ```bash
 npm run generate   # icons/*.svg -> src/ (rodar após qualquer mudança em icons/ ou banks-data)
-npm run docs       # regenera docs/index.html
+npm run docs       # regenera docs/index.html + docs/icons/ + docs/api/bancos.json
 npm test           # build (tsup) + smoke test SSR — precisa passar antes de commit/publish
 python3 tools/compose.py   # regenera os icons/*.svg criados a partir de tools/sources/
 ```

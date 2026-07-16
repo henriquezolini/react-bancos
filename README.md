@@ -119,6 +119,29 @@ Não usa React? Os arquivos originais vêm no pacote:
 import nubankUrl from "react-bancos/icons/nubank.svg";
 ```
 
+### Via URL (sem instalar nada)
+
+Todo ícone também é servido como SVG estático direto pelo GitHub Pages do projeto,
+endereçado pelo `slug` do banco — útil pra apps mobile, e-mails, ou qualquer lugar
+que só aceite uma URL de imagem:
+
+```
+https://henriquezolini.github.io/react-bancos/icons/<slug>.svg
+```
+
+```html
+<img src="https://henriquezolini.github.io/react-bancos/icons/nubank.svg" width="48" height="48" />
+```
+
+Um índice com os metadados de todas as instituições (slug, nome, COMPE, cor e a URL
+de cada ícone) fica em:
+
+```
+https://henriquezolini.github.io/react-bancos/api/bancos.json
+```
+
+Os slugs válidos são os da coluna **Slug** da tabela abaixo.
+
 ## Bancos
 
 Cobertura atual dos principais bancos e fintechs do país — contribuições para os que faltam são muito bem-vindas!
